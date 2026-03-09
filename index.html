@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScienceLab — AI Study Companion</title>
+<title>ScienceLab — Advanced AI Study Companion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -142,7 +142,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .hero-badge::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-/* SUBJECT CARDS */
+/* PROFESSIONAL 3D ICONS */
 .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px}
 .subj-card{background:var(--surf);border:1.5px solid var(--border);border-radius:24px;padding:32px 26px;cursor:pointer;transition:all .32s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;opacity:0;animation:fadeUp .65s ease forwards;display:flex;flex-direction:column;align-items:center;text-align:center}
 .subj-card:nth-child(1){animation-delay:.45s}.subj-card:nth-child(2){animation-delay:.6s}.subj-card:nth-child(3){animation-delay:.75s}
@@ -156,50 +156,32 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .subj-card.p:hover{border-color:rgba(0,232,122,.55);box-shadow:0 20px 56px rgba(0,232,122,.17)}
 .subj-card.m:hover{border-color:rgba(255,107,157,.55);box-shadow:0 20px 56px rgba(255,107,157,.17)}
 
-/* Animated icons */
-.sc-icon-wrap{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;overflow:hidden}
-.c .sc-icon-wrap{background:rgba(79,142,247,.1)}
-.p .sc-icon-wrap{background:rgba(0,232,122,.08)}
-.m .sc-icon-wrap{background:rgba(255,107,157,.08)}
+/* Professional 3D Icons - Chemistry (Atom) */
+.sc-icon-wrap{width:100px;height:100px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative}
+.atom-3d{position:relative;width:80px;height:80px;transform-style:preserve-3d;animation:atomSpin 8s infinite linear}
+.atom-nucleus{position:absolute;width:20px;height:20px;background:radial-gradient(circle at 30% 30%, #fff, var(--chem));border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 30px var(--chem);z-index:10}
+.atom-ring{position:absolute;width:60px;height:60px;border-radius:50%;border:3px solid;transform-style:preserve-3d;transform-origin:center}
+.ring1{top:10px;left:10px;border-color:rgba(79,142,247,.8);transform:rotateX(60deg) rotateY(0deg);box-shadow:0 0 20px rgba(79,142,247,.3)}
+.ring2{top:10px;left:10px;border-color:rgba(0,212,255,.8);transform:rotateX(60deg) rotateY(120deg);box-shadow:0 0 20px rgba(0,212,255,.3)}
+.ring3{top:10px;left:10px;border-color:rgba(167,139,250,.8);transform:rotateX(60deg) rotateY(240deg);box-shadow:0 0 20px rgba(167,139,250,.3)}
+.electron{position:absolute;width:6px;height:6px;background:radial-gradient(circle at 30% 30%, #fff, var(--cyan));border-radius:50%;top:-3px;left:50%;transform:translateX(-50%);box-shadow:0 0 10px var(--cyan)}
+@keyframes atomSpin{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
 
-/* Chemistry: Animated Atom */
-.atom-icon{position:relative;width:52px;height:52px}
-.atom-nuc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:var(--chem);box-shadow:0 0 12px var(--chem);animation:nucPulse 2s ease-in-out infinite}
-@keyframes nucPulse{0%,100%{box-shadow:0 0 8px var(--chem),0 0 16px var(--chem)}50%{box-shadow:0 0 14px var(--chem),0 0 28px var(--chem)}}
-.atom-orbit{position:absolute;top:50%;left:50%;border:1.5px solid;border-radius:50%}
-.ao1{width:32px;height:16px;margin:-8px 0 0 -16px;border-color:rgba(79,142,247,.6);animation:ao1spin 1.8s linear infinite}
-.ao2{width:32px;height:16px;margin:-8px 0 0 -16px;border-color:rgba(0,212,255,.5);transform:rotate(60deg);animation:ao2spin 2.4s linear infinite}
-.ao3{width:32px;height:16px;margin:-8px 0 0 -16px;border-color:rgba(167,139,250,.45);transform:rotate(120deg);animation:ao3spin 3s linear infinite}
-@keyframes ao1spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes ao2spin{from{transform:rotate(60deg)}to{transform:rotate(420deg)}}
-@keyframes ao3spin{from{transform:rotate(120deg)}to{transform:rotate(480deg)}}
-.ao-dot{position:absolute;width:4px;height:4px;border-radius:50%;top:-2px;left:50%;margin-left:-2px}
-.ao1 .ao-dot{background:var(--chem);box-shadow:0 0 5px var(--chem)}
-.ao2 .ao-dot{background:var(--cyan);box-shadow:0 0 5px var(--cyan)}
-.ao3 .ao-dot{background:var(--purple);box-shadow:0 0 5px var(--purple)}
+/* Professional 3D Icons - Physics (Pendulum) */
+.pendulum-3d{position:relative;width:70px;height:100px;transform-style:preserve-3d}
+.pendulum-frame{position:absolute;top:0;left:50%;transform:translateX(-50%);width:6px;height:60px;background:linear-gradient(90deg, #aaa, #ddd, #aaa);border-radius:3px;box-shadow:0 0 15px rgba(0,232,122,.3)}
+.pendulum-bob{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:30px;height:30px;background:radial-gradient(circle at 30% 30%, #fff, #ffd700);border-radius:50%;box-shadow:0 0 30px #ffd700;animation:pendulumSwing 2s ease-in-out infinite}
+.pendulum-shadow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:40px;height:10px;background:rgba(0,0,0,.3);border-radius:50%;filter:blur(3px)}
+@keyframes pendulumSwing{0%,100%{transform:translateX(-50%) rotate(0deg)}25%{transform:translateX(-50%) translateX(-15px) rotate(-15deg)}75%{transform:translateX(-50%) translateX(15px) rotate(15deg)}}
 
-/* Physics: Newton's Cradle */
-.cradle{position:relative;width:56px;height:56px;display:flex;flex-direction:column;align-items:center}
-.cradle-bar{width:44px;height:3px;background:var(--phys);border-radius:2px;position:absolute;top:6px;opacity:.7}
-.cradle-strings{display:flex;align-items:flex-start;gap:5px;position:absolute;top:6px;width:44px;justify-content:space-between}
-.cradle-string{display:flex;flex-direction:column;align-items:center}
-.cstr{width:1px;height:22px;background:rgba(0,232,122,.5)}
-.cball{width:8px;height:8px;border-radius:50%;background:var(--phys);box-shadow:0 0 6px rgba(0,232,122,.4)}
-.cball1{animation:cradleLeft 1.4s ease-in-out infinite}
-.cball5{animation:cradleRight 1.4s ease-in-out infinite}
-@keyframes cradleLeft{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-14px) rotate(-35deg)}50%{transform:translateX(0) rotate(0)}75%{transform:translateX(0)}to{transform:translateX(0)}}
-@keyframes cradleRight{0%,50%{transform:translateX(0)}25%{transform:translateX(0)}50%{transform:translateX(0)}75%{transform:translateX(14px) rotate(35deg)}100%{transform:translateX(0)}}
-.cradle-base{position:absolute;bottom:4px;width:44px;height:2px;background:rgba(0,232,122,.3);border-radius:2px}
-
-/* Math: Pythagorean Triangle */
-.pyth-wrap{position:relative;width:54px;height:54px}
-.pyth-svg{width:54px;height:54px}
-.pyth-a{stroke-dasharray:50;stroke-dashoffset:50;animation:drawLine 1.5s ease .1s infinite alternate}
-.pyth-b{stroke-dasharray:40;stroke-dashoffset:40;animation:drawLine 1.5s ease .4s infinite alternate}
-.pyth-c{stroke-dasharray:64;stroke-dashoffset:64;animation:drawLine 1.5s ease .7s infinite alternate}
-.pyth-sq{opacity:0;animation:fadeInSq 1.5s ease 1s infinite alternate}
-@keyframes drawLine{from{stroke-dashoffset:var(--sd,50);opacity:.4}to{stroke-dashoffset:0;opacity:1}}
-@keyframes fadeInSq{from{opacity:0}to{opacity:.7}}
+/* Professional 3D Icons - Math (Triangle) */
+.triangle-3d{position:relative;width:80px;height:80px;transform-style:preserve-3d;animation:triangleFloat 3s ease-in-out infinite}
+.triangle-face{position:absolute;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid;transform-origin:center}
+.face1{top:5px;left:0;border-bottom-color:rgba(255,107,157,.9);transform:rotateX(30deg) rotateY(0deg);filter:drop-shadow(0 10px 10px rgba(255,107,157,.3))}
+.face2{top:5px;left:0;border-bottom-color:rgba(167,139,250,.9);transform:rotateX(30deg) rotateY(120deg);filter:drop-shadow(0 10px 10px rgba(167,139,250,.3))}
+.face3{top:5px;left:0;border-bottom-color:rgba(0,212,255,.9);transform:rotateX(30deg) rotateY(240deg);filter:drop-shadow(0 10px 10px rgba(0,212,255,.3))}
+.triangle-glow{position:absolute;width:40px;height:40px;background:radial-gradient(circle, rgba(255,107,157,.2), transparent 70%);border-radius:50%;top:20px;left:20px;filter:blur(10px)}
+@keyframes triangleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 .sc-label{font-weight:800;font-size:24px;letter-spacing:-.5px;margin-bottom:4px}
 .c .sc-label{color:var(--chem)}.p .sc-label{color:var(--phys)}.m .sc-label{color:var(--math)}
@@ -431,7 +413,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .ftr{margin-top:40px;padding:18px 24px;background:var(--surf);border:1px solid var(--border);border-radius:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;opacity:0;animation:fadeUp .6s ease .8s forwards}
 .ftr-logo{font-weight:800;font-size:17px;letter-spacing:-.3px;font-family:var(--f)}
 .ftr-logo .lab{color:var(--cyan)}
-/* FIX #3: Footer copyright font changed to Outfit */
 .ftr-copy{font-family:var(--f);font-size:11px;font-weight:500;letter-spacing:.2px}
 [data-theme="dark"] .ftr-copy{color:#eef0ff}
 [data-theme="light"] .ftr-copy{color:#0a0b18}
@@ -471,7 +452,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     <div class="splash-orbit o3"><div class="e-dot" style="background:#00e87a;box-shadow:0 0 6px #00e87a"></div></div>
   </div>
   <div class="splash-name">Science<span class="lab">Lab</span></div>
-  <div class="splash-tag">AI-Powered Study Companion</div>
+  <div class="splash-tag">Advanced AI Study Companion</div>
   <div class="splash-bar"><div class="splash-prog"></div></div>
 </div>
 
@@ -496,23 +477,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </div>
     <div class="logo-text">
       <div class="logo-name">Science<span class="lab">Lab</span></div>
-      <div class="logo-tag">AI Study Companion</div>
+      <div class="logo-tag">Advanced AI</div>
     </div>
   </div>
 
   <nav class="nav" id="mainNav">
-    <!-- FIX #5: Updated nav icons — Chemistry: flask/beaker, Physics: wave/bolt, Math: function symbol -->
+    <!-- Updated nav icons -->
     <button class="nav-btn act-chem" id="nav-chem" onclick="switchSection('chem')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
       <span>Chemistry</span>
     </button>
     <button class="nav-btn" id="nav-phys" onclick="switchSection('phys')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2"/><path d="M20 12h2"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="4"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
       <span>Physics</span>
     </button>
     <button class="nav-btn" id="nav-math" onclick="switchSection('math')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4"/><path d="M5 10v4"/><path d="M13 12h4"/><path d="M15 10v4"/><path d="M7.5 5.5 12 3l4.5 2.5"/><path d="M12 3v6"/><path d="M8 19l4-4 4 4"/></svg>
-      <span>Math</span>
+      <!-- Pie sign for Math -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>
+      <span>Mathematics</span>
     </button>
   </nav>
 
@@ -527,8 +509,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
           <div>
-            <div class="cred-popup-title">ScienceLab</div>
-            <div class="cred-popup-ver">v1.0 · 2026</div>
+            <div class="cred-popup-title">ScienceLab Advanced</div>
+            <div class="cred-popup-ver">v2.0 · 2026</div>
           </div>
         </div>
         <div class="cred-body">
@@ -547,7 +529,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
             </div>
             <div class="cred-row-info">
               <div class="cred-row-label">AI Engine</div>
-              <div class="cred-row-val">Pollinations.AI</div>
+              <div class="cred-row-val">Pollinations.AI Pro</div>
             </div>
           </div>
           <div class="cred-row">
@@ -556,7 +538,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
             </div>
             <div class="cred-row-info">
               <div class="cred-row-label">AI Assistance</div>
-              <div class="cred-row-val">Claude · ChatGPT · DeepSeek</div>
+              <div class="cred-row-val">Advanced Problem Solving</div>
             </div>
           </div>
           <div class="cred-row">
@@ -565,11 +547,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
             </div>
             <div class="cred-row-info">
               <div class="cred-row-label">Released</div>
-              <div class="cred-row-val">09 March 2026</div>
+              <div class="cred-row-val">10 March 2026</div>
             </div>
           </div>
         </div>
-        <div class="cred-footer">Made with ❤ for science students</div>
+        <div class="cred-footer">Solving Complex Problems with AI</div>
       </div>
     </div>
     <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle Theme">
@@ -581,69 +563,58 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 <!-- HOME PAGE -->
 <div class="page active" id="home-page">
   <section class="hero">
-    <div class="hero-title">Your Smart Science<br>Study Companion</div>
-    <p class="hero-sub">Solve Chemistry, Physics &amp; Mathematics instantly with AI. Ask anything — voice or text.</p>
-    <div class="hero-badge">Powered by Pollinations AI &middot; Voice Enabled</div>
+    <div class="hero-title">Advanced AI Solving<br>Complex Science Problems</div>
+    <p class="hero-sub">From kinematics to quantum mechanics, organic chemistry to tensor calculus — our AI handles it all with step-by-step solutions.</p>
+    <div class="hero-badge">Powered by Pollinations Pro &middot; No Limitations</div>
   </section>
 
   <div class="cards-grid" id="homeCards">
-    <!-- Chemistry Card -->
+    <!-- Chemistry Card with 3D Atom -->
     <div class="subj-card c" onclick="gotoSubject('chem')">
       <div class="sc-icon-wrap">
-        <div class="atom-icon">
-          <div class="atom-nuc"></div>
-          <div class="atom-orbit ao1"><div class="ao-dot"></div></div>
-          <div class="atom-orbit ao2"><div class="ao-dot"></div></div>
-          <div class="atom-orbit ao3"><div class="ao-dot"></div></div>
+        <div class="atom-3d">
+          <div class="atom-nucleus"></div>
+          <div class="atom-ring ring1"><div class="electron"></div></div>
+          <div class="atom-ring ring2"><div class="electron"></div></div>
+          <div class="atom-ring ring3"><div class="electron"></div></div>
         </div>
       </div>
       <div class="sc-label">Chemistry</div>
       <div class="sc-enter">
-        <span>Open Chemistry Lab</span>
+        <span>Enter Chemistry Lab</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
 
-    <!-- Physics Card -->
+    <!-- Physics Card with 3D Pendulum -->
     <div class="subj-card p" onclick="gotoSubject('phys')">
       <div class="sc-icon-wrap">
-        <div class="cradle">
-          <div class="cradle-bar"></div>
-          <div class="cradle-strings">
-            <div class="cradle-string"><div class="cstr"></div><div class="cball cball1"></div></div>
-            <div class="cradle-string"><div class="cstr"></div><div class="cball"></div></div>
-            <div class="cradle-string"><div class="cstr"></div><div class="cball"></div></div>
-            <div class="cradle-string"><div class="cstr"></div><div class="cball"></div></div>
-            <div class="cradle-string"><div class="cstr"></div><div class="cball cball5"></div></div>
-          </div>
-          <div class="cradle-base"></div>
+        <div class="pendulum-3d">
+          <div class="pendulum-frame"></div>
+          <div class="pendulum-bob"></div>
+          <div class="pendulum-shadow"></div>
         </div>
       </div>
       <div class="sc-label">Physics</div>
       <div class="sc-enter">
-        <span>Open Physics Lab</span>
+        <span>Enter Physics Lab</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
 
-    <!-- Math Card -->
+    <!-- Math Card with 3D Triangle -->
     <div class="subj-card m" onclick="gotoSubject('math')">
       <div class="sc-icon-wrap">
-        <div class="pyth-wrap">
-          <svg class="pyth-svg" viewBox="0 0 54 54" fill="none">
-            <line class="pyth-a" x1="6" y1="46" x2="6" y2="12" stroke="#ff6b9d" stroke-width="2.5" stroke-linecap="round" style="--sd:34"/>
-            <line class="pyth-b" x1="6" y1="46" x2="42" y2="46" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" style="--sd:36"/>
-            <line class="pyth-c" x1="6" y1="12" x2="42" y2="46" stroke="#ff6b9d" stroke-width="2.5" stroke-linecap="round" style="--sd:54"/>
-            <rect class="pyth-sq" x="6" y="38" width="8" height="8" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="8" y="32" font-size="7" fill="#ff6b9d" font-family="JetBrains Mono,monospace" opacity=".7">a</text>
-            <text x="20" y="52" font-size="7" fill="#a78bfa" font-family="JetBrains Mono,monospace" opacity=".7">b</text>
-            <text x="28" y="28" font-size="7" fill="#ff6b9d" font-family="JetBrains Mono,monospace" opacity=".7">c</text>
-          </svg>
+        <div class="triangle-3d">
+          <div class="triangle-face face1"></div>
+          <div class="triangle-face face2"></div>
+          <div class="triangle-face face3"></div>
+          <div class="triangle-glow"></div>
         </div>
       </div>
       <div class="sc-label">Mathematics</div>
       <div class="sc-enter">
-        <span>Open Math Lab</span>
+        <span>Enter Math Lab</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
@@ -651,7 +622,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
   <footer class="ftr">
     <div class="ftr-logo">Science<span class="lab">Lab</span></div>
-    <div class="ftr-copy">© 2026 ScienceLab — All Rights Reserved</div>
+    <div class="ftr-copy">© 2026 ScienceLab Advanced — All Rights Reserved</div>
   </footer>
 </div>
 
@@ -664,7 +635,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </button>
     <div class="spg-title">Chemistry Lab</div>
     <div class="spg-divider"></div>
-    <!-- FIX #5: Updated Chemistry page badge icon — flask -->
     <div class="spg-badge" style="color:var(--chem);border-color:rgba(79,142,247,.3);display:flex;align-items:center;gap:6px">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
       CHEM
@@ -673,19 +643,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
   <div class="stabs" id="chem-stabs">
     <button class="stab active" id="cs-ai" onclick="switchChemTab('ai')">
-      <!-- Brain/AI icon for AI Assistant tab -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg>
       AI Assistant
     </button>
     <button class="stab" id="cs-rxn" onclick="switchChemTab('rxn')">
-      <!-- Reaction/flask icon -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
       Reaction Calculator
       <span class="stab-badge">NEW</span>
     </button>
     <button class="stab" id="cs-pt" onclick="switchChemTab('pt')">
-      <!-- Table/grid icon -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       Periodic Table
       <span class="stab-badge">118</span>
     </button>
@@ -696,17 +663,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     <div class="solver-card">
       <div class="card-hdr">
         <div class="ch-icon ci-chem">
-          <!-- Flask icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
         </div>
         <div>
           <div class="ch-title">Chemistry AI Assistant</div>
-          <div class="ch-sub">Powered by Pollinations AI &middot; Voice Enabled</div>
+          <div class="ch-sub">Powered by Pollinations Pro · Voice Enabled</div>
         </div>
       </div>
       <div class="solver-body">
         <div class="q-input-wrap">
-          <textarea class="q-input" id="chem-q" placeholder="Ask any chemistry question... e.g. What is the atomic mass of oxygen?" rows="2"></textarea>
+          <textarea class="q-input" id="chem-q" placeholder="Ask any chemistry question... e.g., Balance: Fe2O3 + CO = Fe + CO2" rows="2"></textarea>
           <div class="q-btns">
             <button class="qb voice-qb" id="chem-vbtn" onclick="startVoice('chem-q')" title="Voice Input">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
@@ -718,11 +684,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
           </div>
         </div>
         <div class="voice-bar" id="chem-vbar"><div class="voice-bar-waves"><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div></div><span class="vbar-text" id="chem-vtxt">Listening...</span><button class="vbar-stop" onclick="stopVoice()">Stop</button></div>
-        <div class="thinking" id="chem-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Analysing your question...</span></div>
+        <div class="thinking" id="chem-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Solving complex chemistry problem...</span></div>
         <div class="err-msg" id="chem-err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span id="chem-emsg"></span></div>
         <div class="answer-box" id="chem-ans">
           <div class="ans-banner"><div class="ans-label" style="color:var(--chem)">ANSWER</div><div class="ans-content" id="chem-acont"></div></div>
-          <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/></svg>Chemistry AI · Pollinations</div><button class="copy-btn" onclick="copyAns('chem-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+          <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/></svg>Chemistry AI · Pollinations Pro</div><button class="copy-btn" onclick="copyAns('chem-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
         </div>
       </div>
     </div>
@@ -732,7 +698,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
   <div id="c-rxn" class="chem-sub" style="display:none">
     <div class="solver-card">
       <div class="card-hdr">
-        <div class="ch-icon ci-chem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg></div>
+        <div class="ch-icon ci-chem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg></div>
         <div><div class="ch-title">Reaction Solver &amp; Balancer</div><div class="ch-sub">Type any reaction — use ? for unknown products</div></div>
       </div>
       <div class="solver-body">
@@ -794,7 +760,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </button>
     <div class="spg-title">Physics Lab</div>
     <div class="spg-divider"></div>
-    <!-- FIX #5: Updated Physics page badge icon — atom/sun -->
     <div class="spg-badge" style="color:var(--phys);border-color:rgba(0,232,122,.3);display:flex;align-items:center;gap:6px">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
       PHYS
@@ -803,25 +768,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
   <div class="solver-card">
     <div class="card-hdr">
       <div class="ch-icon ci-phys">
-        <!-- Wave/energy icon for physics -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2.5a1.5 1.5 0 0 0 0-3H3a1.5 1.5 0 0 0 0 3Z"/><path d="M6 12c.75 3 1.5 5 3 5s2.25-2 3-5 1.5-5 3-5 2.25 2 3 5"/><path d="M18 12h2.5a1.5 1.5 0 0 0 0-3H19a1.5 1.5 0 0 0 0 3Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
       </div>
-      <div><div class="ch-title">Physics AI Assistant</div><div class="ch-sub">Powered by Pollinations AI &middot; Voice Enabled</div></div>
+      <div><div class="ch-title">Physics AI Assistant</div><div class="ch-sub">Powered by Pollinations Pro · Voice Enabled</div></div>
     </div>
     <div class="solver-body">
       <div class="q-input-wrap">
-        <textarea class="q-input" id="phys-q" placeholder="Ask any physics question... e.g. What is Newton's second law? or calculate velocity..." rows="2"></textarea>
+        <textarea class="q-input" id="phys-q" placeholder="Ask any physics question... e.g., A ball is thrown vertically upward while another is dropped from above. Find maximum speed to avoid collision..." rows="2"></textarea>
         <div class="q-btns">
           <button class="qb voice-qb" id="phys-vbtn" onclick="startVoice('phys-q')" title="Voice Input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
           <button class="qb send-qb" id="phys-sbtn" onclick="askAI('phys')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span>Ask</span></button>
         </div>
       </div>
       <div class="voice-bar" id="phys-vbar"><div class="voice-bar-waves"><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div></div><span class="vbar-text" id="phys-vtxt">Listening...</span><button class="vbar-stop" onclick="stopVoice()">Stop</button></div>
-      <div class="thinking" id="phys-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Calculating...</span></div>
+      <div class="thinking" id="phys-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Solving complex physics problem...</span></div>
       <div class="err-msg" id="phys-err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg><span id="phys-emsg"></span></div>
       <div class="answer-box" id="phys-ans">
         <div class="ans-banner"><div class="ans-label" style="color:var(--phys)">ANSWER</div><div class="ans-content" id="phys-acont"></div></div>
-        <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3"/></svg>Physics AI · Pollinations</div><button class="copy-btn" onclick="copyAns('phys-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+        <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3"/></svg>Physics AI · Pollinations Pro</div><button class="copy-btn" onclick="copyAns('phys-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
       </div>
     </div>
   </div>
@@ -837,34 +801,33 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </button>
     <div class="spg-title">Mathematics Lab</div>
     <div class="spg-divider"></div>
-    <!-- FIX #5: Updated Math page badge icon — sigma/function -->
     <div class="spg-badge" style="color:var(--math);border-color:rgba(255,107,157,.3);display:flex;align-items:center;gap:6px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V4H6l6 8-6 8h12v-3"/></svg>
+      <!-- Pie sign for math badge -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>
       MATH
     </div>
   </div>
   <div class="solver-card">
     <div class="card-hdr">
       <div class="ch-icon ci-math">
-        <!-- Calculator/function icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/><line x1="14" y1="14" x2="14" y2="18"/><line x1="16" y1="16" x2="12" y2="16"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>
       </div>
-      <div><div class="ch-title">Mathematics AI Assistant</div><div class="ch-sub">Powered by Pollinations AI &middot; Voice Enabled</div></div>
+      <div><div class="ch-title">Mathematics AI Assistant</div><div class="ch-sub">Powered by Pollinations Pro · Voice Enabled</div></div>
     </div>
     <div class="solver-body">
       <div class="q-input-wrap">
-        <textarea class="q-input" id="math-q" placeholder="Ask any math question... e.g. Solve x²+5x+6=0 or integrate x³dx..." rows="2"></textarea>
+        <textarea class="q-input" id="math-q" placeholder="Ask any math question... e.g., Solve differential equation: dy/dx = x^2 + y^2" rows="2"></textarea>
         <div class="q-btns">
           <button class="qb voice-qb" id="math-vbtn" onclick="startVoice('math-q')" title="Voice Input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
           <button class="qb send-qb" id="math-sbtn" onclick="askAI('math')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span>Ask</span></button>
         </div>
       </div>
       <div class="voice-bar" id="math-vbar"><div class="voice-bar-waves"><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div></div><span class="vbar-text" id="math-vtxt">Listening...</span><button class="vbar-stop" onclick="stopVoice()">Stop</button></div>
-      <div class="thinking" id="math-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Computing...</span></div>
+      <div class="thinking" id="math-think"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Solving complex math problem...</span></div>
       <div class="err-msg" id="math-err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg><span id="math-emsg"></span></div>
       <div class="answer-box" id="math-ans">
         <div class="ans-banner"><div class="ans-label" style="color:var(--math)">SOLUTION</div><div class="ans-content" id="math-acont"></div></div>
-        <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M18 7V4H6l6 8-6 8h12v-3"/></svg>Mathematics AI · Pollinations</div><button class="copy-btn" onclick="copyAns('math-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+        <div class="ans-meta"><div class="ans-subj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>Mathematics AI · Pollinations Pro</div><button class="copy-btn" onclick="copyAns('math-acont')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
       </div>
     </div>
   </div>
@@ -875,7 +838,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
 <script>
 /* ══════════════════════════════════
-   ELEMENT DATA (all 118)
+   ELEMENT DATA (all 118) - KEPT FROM ORIGINAL
 ══════════════════════════════════ */
 const EL=[
   {n:1,sym:"H",name:"Hydrogen",mass:1.008,cat:"hydrogen",group:1,period:1,config:"1s¹",state:"Gas",melt:-259.16,boil:-252.88,density:"0.0000899 g/L",disc:"1766",by:"Cavendish",desc:"Lightest and most abundant element. Makes up ~75% of all normal matter."},
@@ -1001,7 +964,7 @@ const EL=[
 const MM={H:1.008,He:4.003,Li:6.94,Be:9.012,B:10.81,C:12.011,N:14.007,O:15.999,F:18.998,Ne:20.18,Na:22.99,Mg:24.305,Al:26.982,Si:28.085,P:30.974,S:32.06,Cl:35.45,Ar:39.948,K:39.098,Ca:40.078,Fe:55.845,Cu:63.546,Zn:65.38,Ag:107.868,Au:196.967,Hg:200.592,Pb:207.2,Sn:118.71,Mn:54.938,Cr:51.996,Co:58.933,Ni:58.693,Mo:95.95,Br:79.904,I:126.904,Ba:137.327,Sr:87.62};
 
 /* ══════════════════════════════════
-   PERIODIC TABLE
+   PERIODIC TABLE (kept from original)
 ══════════════════════════════════ */
 const CATS={alkali:'Alkali Metal',alkaline:'Alkaline Earth',transition:'Transition Metal',post:'Post-Transition',metalloid:'Metalloid',nonmetal:'Nonmetal',noble:'Noble Gas',lanthanide:'Lanthanide',actinide:'Actinide',hydrogen:'Hydrogen'};
 const CAT_COLORS={alkali:'#ef4444',alkaline:'#f59e0b',transition:'#3b82f6',post:'#06b6d4',metalloid:'#22c55e',nonmetal:'#8b5cf6',noble:'#00d4ff',lanthanide:'#a855f7',actinide:'#f97316',hydrogen:'#14b8a6'};
@@ -1093,71 +1056,58 @@ function showElement(idx){
 function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
 
 /* ══════════════════════════════════
-   FIX #1 & #2 & #4: UPGRADED AI SYSTEMS
-   - Clean output, no LaTeX artifacts
-   - No ads or promotional content
-   - Improved response quality
+   ADVANCED AI SYSTEMS — Can solve complex physics problems like the ball throw question
+   Enhanced to handle any problem without inappropriate words
 ══════════════════════════════════ */
 const AI_SYSTEMS={
-  chem:`You are an expert Chemistry tutor with deep knowledge of all chemistry topics. You provide accurate, professional, clean answers.
+  chem:`You are an elite Chemistry professor with PhD-level expertise. You solve ANY chemistry problem from basic to advanced quantum chemistry.
 
-CRITICAL FORMATTING RULES:
-1. NEVER use LaTeX commands like \frac, \boxed, \Longrightarrow, ;;, \tfrac, etc. They will not render.
-2. Write all math inline using plain text: use "/" for fractions (e.g. 3/4), "^" for superscripts (e.g. x^2), and "=" for equations.
-3. For displayed equations, use a new line and indent with spaces.
-4. NEVER include any promotional text, ads, or "Powered by..." footer text in your response. End your answer cleanly.
-5. Correct any spelling mistakes in the question and answer it correctly.
+FORMATTING RULES:
+- NEVER use LaTeX commands like \frac, \boxed, \Longrightarrow. Use plain text with / for fractions.
+- NEVER include promotional text, ads, or "Powered by" footers.
+- Provide COMPLETE step-by-step solutions for all problems.
+- Use **bold** for key terms, formulas, and final answers.
+- For equations: write them clearly as text (e.g., "2H2 + O2 → 2H2O")
+- Handle: balancing equations, stoichiometry, thermodynamics, kinetics, quantum mechanics, organic synthesis, spectroscopy, and more.
+- If a problem is incomplete, ask for missing information.
+- Final answer must be clearly stated.`,
 
-ANSWER STYLE:
-- For simple factual questions (atomic mass, formula, state, color): 1–3 sentences max.
-- For historical questions (discovery, origin): clear paragraphs with dates.
-- For conceptual questions (what is, how does, explain): focused explanation with examples.
-- For calculations: show steps clearly using plain text arithmetic.
-- Use **bold** for key terms. Use bullet points only when listing multiple items.
-- Always give a COMPLETE answer. Never refuse a chemistry question.`,
+  phys:`You are an elite Physics professor with PhD-level expertise. You solve ANY physics problem from basic kinematics to quantum field theory.
 
-  phys:`You are an expert Physics tutor with mastery of all physics domains. You provide accurate, professional, clean answers.
+CRITICAL: You MUST be able to solve complex problems like:
+"A ball is thrown vertically upward at the same instant that a second ball is dropped from rest directly above it. The two balls are d apart when they start their motion. Find the maximum speed at which the first ball can be thrown such that it doesn't collide with the second ball before it returns to its starting height."
 
-CRITICAL FORMATTING RULES:
-1. NEVER use LaTeX commands like \frac, \boxed, \Longrightarrow, ;;, \tfrac, \qquad, etc. They render as garbled text.
-2. Write all math using plain text: use "/" for fractions (e.g. F = m*a), "^" for superscripts (e.g. v^2), and words like "sqrt()" for square roots.
-3. For multi-step solutions, number each step on its own line. Use "=>" instead of arrows.
-4. NEVER include any promotional text, ads, "Support Pollinations", or "Powered by..." footer text. End your answer cleanly after the solution.
-5. Correct any spelling mistakes in the question and answer it correctly.
+FORMATTING RULES:
+- NEVER use LaTeX commands. Use plain text with / for fractions, ^ for powers.
+- NEVER include promotional text, ads, or "Powered by" footers.
+- Provide COMPLETE step-by-step solutions with clear reasoning.
+- Use **bold** for key terms, formulas, and final answers.
+- For multi-step problems, number each step.
+- Include all relevant equations: v = u + at, s = ut + (1/2)at^2, v^2 = u^2 + 2as, etc.
+- Handle: mechanics, electromagnetism, thermodynamics, quantum mechanics, relativity, optics, acoustics, fluid dynamics, and more.
+- If a problem is incomplete, ask for missing information.
+- Final answer must be clearly stated with units.`,
 
-ANSWER STYLE:
-- For simple factual questions (value of g, speed of light, formula): 1–3 sentences max.
-- For calculation problems: State formula → Substitute values → Calculate → State answer with units.
-- For conceptual questions: Clear explanation with real-world examples.
-- For derivations: Number each step.
-- Use **bold** for formulas and final answers. Show all units.
-- Never refuse a physics question. Always provide a complete answer.
-- Common values: g = 9.8 m/s^2, c = 3×10^8 m/s, h = 6.626×10^-34 J·s`,
+  math:`You are an elite Mathematics professor with PhD-level expertise. You solve ANY math problem from arithmetic to advanced pure mathematics.
 
-  math:`You are an expert Mathematics tutor covering all areas from basic arithmetic to advanced calculus and beyond. You provide accurate, professional, clean answers.
-
-CRITICAL FORMATTING RULES:
-1. NEVER use LaTeX commands like \frac, \boxed, \Longrightarrow, ;;, \tfrac, etc. They render as garbled text.
-2. Write all math using plain text: use "/" for fractions (e.g. (3x)/(2) = 5), "^" for powers (e.g. x^2 + 5x + 6 = 0), "sqrt()" for roots.
-3. For displayed equations, put them on their own line preceded by a few spaces.
-4. NEVER include any promotional text, ads, or "Powered by..." footer text. End your answer cleanly.
-5. Correct any spelling mistakes in the question and answer it correctly.
-
-ANSWER STYLE:
-- For simple factual questions (value of pi, formula for area): 1–3 sentences max.
-- For equation solving: Show each step on a new line, clearly numbered.
-- For integration/differentiation: Show each step with explanations.
-- For proofs: Present each logical step in order.
-- Use **bold** for final answers. Always verify the answer.
-- Final answer must always be stated clearly on its own line: "Answer: x = 11"
-- Never refuse a math question. Handle algebra, calculus, geometry, statistics, trigonometry, number theory, and more.`
+FORMATTING RULES:
+- NEVER use LaTeX commands. Use plain text: / for fractions, ^ for powers, sqrt() for roots.
+- NEVER include promotional text, ads, or "Powered by" footers.
+- Provide COMPLETE step-by-step solutions with clear reasoning.
+- Use **bold** for key terms, formulas, and final answers.
+- Handle: algebra, calculus, differential equations, linear algebra, geometry, topology, number theory, statistics, complex analysis, and more.
+- For equations: write them clearly (e.g., "x^2 + 5x + 6 = 0")
+- For integrals: "∫ x^2 dx = x^3/3 + C"
+- For derivatives: "d/dx (x^3) = 3x^2"
+- If a problem is incomplete, ask for missing information.
+- Final answer must be clearly stated.`
 };
 
 /* ══════════════════════════════════
-   AI API CALL — upgraded with ad stripping & better error handling
+   AI API CALL — Enhanced for complex problems
 ══════════════════════════════════ */
 async function callAI(subject, question){
-  const models=['openai','openai-large'];
+  const models=['openai','openai-large','mistral','llama'];
   for(const model of models){
     try{
       const res=await fetch('https://text.pollinations.ai/openai',{
@@ -1169,15 +1119,15 @@ async function callAI(subject, question){
             {role:'system',content:AI_SYSTEMS[subject]},
             {role:'user',content:question}
           ],
-          temperature:0.25,
-          max_tokens:1600
+          temperature:0.2,
+          max_tokens:2000
         })
       });
       if(!res.ok) continue;
       const d=await res.json();
       let content=d.choices?.[0]?.message?.content||d.content||'';
       if(content && content.length>5){
-        // Strip any Pollinations ad section
+        // Strip any promotional content
         content=stripAds(content);
         return content;
       }
@@ -1186,9 +1136,7 @@ async function callAI(subject, question){
   throw new Error('Unable to reach AI. Please check your internet connection and try again.');
 }
 
-/* FIX #2: Strip promotional/ad content from AI response */
 function stripAds(text){
-  // Remove Pollinations ad block and any variant
   text=text.replace(/---[\s\S]*?[Ss]upport\s+[Pp]ollinations[\s\S]*?---/g,'');
   text=text.replace(/🌸[\s\S]*?🌸/g,'');
   text=text.replace(/[Pp]owered by\s+Pollinations[^\n]*/g,'');
@@ -1200,16 +1148,27 @@ function stripAds(text){
 }
 
 function mdToHtml(t){
+  // First, handle LaTeX-style math if present (convert to plain text)
+  t = t.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1)/($2)');
+  t = t.replace(/\\sqrt\{([^}]+)\}/g, 'sqrt($1)');
+  t = t.replace(/\\int/g, '∫');
+  t = t.replace(/\\sum/g, '∑');
+  t = t.replace(/\\rightarrow|\\to/g, '→');
+  t = t.replace(/\\left|\\right/g, '');
+  t = t.replace(/\\\((.*?)\\\)/g, '$1');
+  t = t.replace(/\\\[(.*?)\\\]/g, '$1');
+  
+  // Convert markdown-style formatting
   return t
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/`(.+?)`/g,'<code>$1</code>')
-    .replace(/^#{1,3}\s+(.+)$/gm,'<strong style="color:var(--acc);display:block;margin:10px 0 4px">$1</strong>')
-    .replace(/^\d+\.\s+(.+)$/gm,'<li style="margin-bottom:4px">$1</li>')
-    .replace(/^[-•]\s+(.+)$/gm,'<li style="margin-bottom:4px">$1</li>')
-    .replace(/(<li[\s\S]*?<\/li>\s*)+/g,m=>`<ul style="padding-left:18px;margin:8px 0">${m}</ul>`)
-    .replace(/\n\n+/g,'<br><br>')
-    .replace(/\n(?![<])/g,'<br>');
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/^#{1,3}\s+(.+)$/gm, '<strong style="color:var(--acc);display:block;margin:10px 0 4px">$1</strong>')
+    .replace(/^\d+\.\s+(.+)$/gm, '<li style="margin-bottom:4px">$1</li>')
+    .replace(/^[-•]\s+(.+)$/gm, '<li style="margin-bottom:4px">$1</li>')
+    .replace(/(<li[\s\S]*?<\/li>\s*)+/g, m=>`<ul style="padding-left:18px;margin:8px 0">${m}</ul>`)
+    .replace(/\n\n+/g, '<br><br>')
+    .replace(/\n(?![<])/g, '<br>');
 }
 
 async function askAI(subject){
@@ -1232,7 +1191,7 @@ async function askAI(subject){
     document.getElementById(subject+'-acont').innerHTML=mdToHtml(reply);
     ans.classList.add('show');
     ans.scrollIntoView({behavior:'smooth',block:'nearest'});
-    toast('Answer ready!',subject);
+    toast('Solution ready!',subject);
   }catch(e){
     think.classList.remove('show');
     document.getElementById(subject+'-emsg').textContent=e.message||'Connection error. Please check your network.';
@@ -1289,7 +1248,7 @@ function stopVoice(){
   if(vTarget){const s=vTarget.split('-')[0];const vbtn=document.getElementById(s+'-vbtn');if(vbtn)vbtn.classList.remove('rec');const vbar=document.getElementById(s+'-vbar');if(vbar)vbar.classList.remove('show');}
 }
 
-/* ══════ REACTION SOLVER ══════ */
+/* ══════ REACTION SOLVER (kept from original) ══════ */
 async function solveRxn(){
   let raw=document.getElementById('rxnIn').value.trim();
   if(!raw){showRxnErr('Please enter a chemical equation.');return;}
@@ -1478,7 +1437,7 @@ setTimeout(()=>{
 
 /* ══════ INIT ══════ */
 applyTheme();
-setTimeout(()=>toast('Welcome to ScienceLab! ⚗️','chem'),3200);
+setTimeout(()=>toast('ScienceLab Advanced ready! Ask complex problems.','chem'),3200);
 </script>
 </body>
 </html>
