@@ -83,7 +83,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .logo-name .lab{color:var(--cyan)}
 .logo-tag{font-family:var(--fm);font-size:8px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
 
-/* NAV — improved pill, no black box cutoff on mobile */
+/* NAV */
 .nav{display:flex;gap:3px;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:4px;flex-wrap:nowrap;opacity:0;animation:fadeUp .5s ease .4s forwards}
 .nav-btn{padding:8px 14px;border-radius:10px;background:transparent;border:none;color:var(--text2);font-family:var(--f);font-weight:600;font-size:12px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:7px;white-space:nowrap;letter-spacing:.3px}
 .nav-btn svg{width:14px;height:14px;flex-shrink:0;transition:transform .2s}
@@ -99,7 +99,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .icon-btn svg{width:16px;height:16px}
 #themeBtn:hover{transform:scale(1.07) rotate(180deg)}
 
-/* CREDITS POPUP — upgraded design */
+/* CREDITS POPUP */
 .cred-wrap{position:relative}
 .cred-popup{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--surf);border:1px solid var(--border2);border-radius:18px;padding:0;min-width:260px;z-index:700;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px var(--border);animation:popIn .2s ease;overflow:hidden}
 @keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
@@ -122,7 +122,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .cred-row-info{flex:1;min-width:0}
 .cred-row-label{font-family:var(--fm);font-size:8.5px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px}
 .cred-row-val{font-size:12px;font-weight:600;color:var(--text);letter-spacing:-.1px}
-.cred-footer{padding:10px 16px;border-top:1px solid var(--border);background:var(--surf2);font-family:var(--fm);font-size:9px;color:var(--text3);text-align:center;letter-spacing:.5px}
+.cred-footer{padding:10px 16px;border-top:1px solid var(--border);background:var(--surf2);font-family:var(--f);font-size:9px;color:var(--text3);text-align:center;letter-spacing:.5px}
 
 /* PAGES */
 .page{display:none}
@@ -216,13 +216,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .spg-divider{flex:1;height:1px;background:var(--border);margin:0 12px}
 .spg-badge{font-family:var(--fm);font-size:10px;padding:4px 12px;border-radius:100px;border:1px solid;letter-spacing:1px}
 
-/* Sub-tabs — highlighted for mobile visibility */
+/* Sub-tabs */
 .stabs{display:flex;gap:4px;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:5px;margin-bottom:24px;overflow-x:auto;opacity:0;animation:fadeUp .5s ease .2s forwards}
 .stab{padding:10px 16px;border-radius:10px;background:transparent;border:1.5px solid transparent;color:var(--text2);font-family:var(--f);font-weight:600;font-size:13px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:8px;white-space:nowrap;letter-spacing:.2px}
 .stab svg{width:14px;height:14px;transition:transform .2s;flex-shrink:0}
 .stab:hover{background:var(--surf2);color:var(--text);border-color:var(--border)}
 .stab.active{background:linear-gradient(135deg,rgba(79,142,247,.2),rgba(124,58,237,.13));color:var(--text);border-color:rgba(79,142,247,.35)}
-/* Feature highlight badges on chemistry sub-tabs */
 .stab-badge{background:rgba(0,232,122,.15);color:var(--green);font-family:var(--fm);font-size:8px;padding:2px 6px;border-radius:100px;font-weight:700;letter-spacing:.5px;border:1px solid rgba(0,232,122,.25)}
 
 /* AI SOLVER */
@@ -377,7 +376,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 .ec.emp{background:transparent;border:none;cursor:default;pointer-events:none}
 .ec.emp:hover{transform:none;box-shadow:none}
 .ec.lp,.ec.ap{font-size:7px;color:var(--text2);font-family:var(--fm);background:rgba(255,255,255,.02);cursor:default;text-align:center;line-height:1.4;font-style:italic;pointer-events:none}
-/* Dimmed: smooth transition for highlighting */
 .ec{transition:all .3s cubic-bezier(.4,0,.2,1)}
 .ec.dimmed{opacity:.08 !important;transform:scale(.92) !important;filter:grayscale(1) !important;pointer-events:none !important}
 .ec.hl-elem{transform:scale(1.04) !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 2px rgba(255,255,255,.2) !important;z-index:5}
@@ -426,9 +424,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
 /* FOOTER */
 .ftr{margin-top:40px;padding:18px 24px;background:var(--surf);border:1px solid var(--border);border-radius:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;opacity:0;animation:fadeUp .6s ease .8s forwards}
-.ftr-logo{font-weight:800;font-size:17px;letter-spacing:-.3px}
+.ftr-logo{font-weight:800;font-size:17px;letter-spacing:-.3px;font-family:var(--f)}
 .ftr-logo .lab{color:var(--cyan)}
-.ftr-copy{font-family:var(--fm);font-size:10px;letter-spacing:.5px}
+.ftr-copy{font-family:var(--f);font-size:10px;letter-spacing:.5px}
 [data-theme="dark"] .ftr-copy{color:#fff}
 [data-theme="light"] .ftr-copy{color:#000}
 
@@ -519,7 +517,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
   <nav class="nav" id="mainNav">
     <button class="nav-btn act-chem" id="nav-chem" onclick="switchSection('chem')">
-      <!-- Tiny inline atom SVG for Chemistry -->
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/></svg>
       <span>Chemistry</span>
     </button>
@@ -1104,58 +1101,53 @@ function showElement(idx){
 function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
 
 /* ══════════════════════════════════
-   HIGHLY TUNED AI SYSTEMS
-   - Smart prompt engineering for accuracy
-   - Spelling correction handling
-   - Concise answers for factual queries
-   - Detailed answers for concept queries
+   IMPROVED AI SYSTEMS - Professional, Clean Output
 ══════════════════════════════════ */
 const AI_SYSTEMS={
-  chem:`You are an expert Chemistry tutor with deep knowledge of all chemistry topics.
+  chem:`You are an expert Chemistry tutor. Provide clear, professional answers without any promotional content.
 
-CRITICAL RULES:
-1. ALWAYS correct spelling errors and understand what the user means. If they write "oxigen" understand it as "oxygen". Never refuse due to spelling.
-2. For SIMPLE FACTUAL questions (atomic mass, melting point, boiling point, formula, discoverer, year, color, state), answer in 1-3 sentences ONLY. Example: "What is the atomic mass of oxygen?" → "The atomic mass of oxygen is 15.999 u (approximately 16 g/mol)."
-3. For HISTORICAL questions (history of X, who discovered X, when was X discovered), give a clear, organized answer with dates and key facts.
-4. For CONCEPTUAL questions (what is, how does, explain, why), give a thorough but focused explanation.
-5. For CALCULATIONS, show step-by-step working with units.
-6. Format: Use **bold** for key terms. Use bullet points only when listing multiple items. Never add unnecessary padding or repetition.
-7. Always give a COMPLETE answer. Never say you cannot answer a chemistry question.
-8. If asked about history of an element, cover: discovery year, discoverer, origin of name, historical uses, modern applications.
+IMPORTANT RULES:
+1. For equations like "3x-6=27", solve step-by-step:
+   Step 1: Add 6 to both sides → 3x = 33
+   Step 2: Divide both sides by 3 → x = 11
+   Final Answer: x = 11
 
-Answer directly and accurately. No excessive preamble.`,
+2. Use plain text only - no LaTeX delimiters like \\( or \\[
+3. No promotional messages, ads, or links
+4. No extra text like "Support..." or "Powered by..."
+5. Keep answers concise and focused on the question
+6. Use numbered steps for calculations
+7. Bold final answers with ** **`,
 
-  phys:`You are an expert Physics tutor with mastery of all physics domains.
+  phys:`You are an expert Physics tutor. Provide clean, professional solutions.
 
-CRITICAL RULES:
-1. ALWAYS correct spelling errors. "velosity" means "velocity", "accelration" means "acceleration". Never refuse due to spelling.
-2. For SIMPLE FACTUAL questions (value of g, speed of light, formula for X), answer in 1-3 sentences ONLY.
-3. For CALCULATION problems: state the formula → substitute values → calculate → give answer with units.
-4. For CONCEPTUAL questions: give a clear, focused explanation with real-world examples.
-5. For DERIVATIONS: show every step clearly numbered.
-6. Format: Use **bold** for formulas and final answers. Show all units.
-7. Never refuse a physics question. Always provide a complete, accurate answer.
-8. Common values to use: g = 9.8 m/s², c = 3×10⁸ m/s, h = 6.626×10⁻³⁴ J·s
+IMPORTANT RULES:
+1. For physics problems, derive equations clearly
+2. Show all steps with proper units
+3. No promotional content or ads
+4. No extra text like "Support Pollinations.AI"
+5. Use plain text with numbered steps
+6. Bold final answers with ** **
+7. Include brief explanations only when necessary`,
 
-Answer directly and accurately.`,
+  math:`You are an expert Mathematics tutor. Solve problems professionally.
 
-  math:`You are an expert Mathematics tutor covering all math topics from basic arithmetic to advanced calculus.
+IMPORTANT RULES:
+1. For equations like "3x-6=27", solve step-by-step:
+   Step 1: 3x - 6 = 27
+   Step 2: Add 6: 3x = 33
+   Step 3: Divide by 3: x = 11
+   Final Answer: x = 11
 
-CRITICAL RULES:
-1. ALWAYS correct spelling errors. "triagnle" means "triangle", "derivitive" means "derivative". Never refuse due to spelling.
-2. For SIMPLE FACTUAL questions (value of pi, formula for area, definition), answer in 1-3 sentences ONLY.
-3. For PROBLEM SOLVING: show every step clearly. Number each step. Show the working.
-4. For PROOFS: present each logical step in order.
-5. For DEFINITIONS: give a clear definition followed by an example.
-6. Format: Use **bold** for final answers. Show all algebraic steps. Verify answers when possible.
-7. Never refuse a math question. Handle algebra, calculus, geometry, statistics, trigonometry, number theory, etc.
-8. If the answer is a specific number, state it clearly: "The answer is X."
-
-Answer directly and accurately. Show your work.`
+2. No LaTeX delimiters - use plain math notation
+3. No promotional messages, ads, or links
+4. Number each step clearly
+5. Bold final answers with ** **
+6. Include brief reasoning for each step
+7. No extra text about Pollinations or support`
 };
 
 async function callAI(subject,question){
-  // Try multiple models for reliability
   const models=['openai','openai-large'];
   for(const model of models){
     try{
@@ -1168,8 +1160,8 @@ async function callAI(subject,question){
             {role:'system',content:AI_SYSTEMS[subject]},
             {role:'user',content:question}
           ],
-          temperature:0.3,
-          max_tokens:1200
+          temperature:0.2,
+          max_tokens:1000
         })
       });
       if(!res.ok) continue;
@@ -1182,14 +1174,23 @@ async function callAI(subject,question){
 }
 
 function mdToHtml(t){
+  // Remove any promotional content
+  t = t.replace(/Support.*?(\.|$)/gi, '')
+       .replace(/Powered by.*?(\.|$)/gi, '')
+       .replace(/\[.*?\]\(.*?\)/g, '') // Remove markdown links
+       .replace(/🌸.*?(\.|$)/g, '')
+       .replace(/Ad.*?(\.|$)/gi, '')
+       .replace(/https?:\/\/[^\s]+/g, '') // Remove URLs
+       .replace(/\\([(){}[\]])/g, '$1') // Remove LaTeX escapes
+       .replace(/\\\[|\\\]|\\\(|\\\)/g, ''); // Remove LaTeX delimiters
+  
   return t
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/\*(.+?)\*/g,'<em>$1</em>')
     .replace(/`(.+?)`/g,'<code>$1</code>')
-    .replace(/^#{1,3}\s+(.+)$/gm,'<strong style="color:var(--acc);display:block;margin:10px 0 4px">$1</strong>')
-    .replace(/^\d+\.\s+(.+)$/gm,'<li style="margin-bottom:4px">$1</li>')
-    .replace(/^[-•]\s+(.+)$/gm,'<li style="margin-bottom:4px">$1</li>')
-    .replace(/(<li[\s\S]*?<\/li>\s*)+/g,m=>`<ul style="padding-left:18px;margin:8px 0">${m}</ul>`)
+    .replace(/^(\d+)\.\s+(.+)$/gm,'<li><strong>Step $1:</strong> $2</li>')
+    .replace(/^[-•]\s+(.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\s*)+/g,m=>`<ul style="padding-left:18px;margin:8px 0">${m}</ul>`)
     .replace(/\n\n+/g,'<br><br>')
     .replace(/\n(?![<])/g,'<br>');
 }
@@ -1288,12 +1289,12 @@ Return ONLY valid JSON:
   "products":[{"formula":"NH3","coeff":2,"name":"Ammonia"}],
   "reaction_type":"Synthesis reaction",
   "reaction_name":"Haber-Bosch Process",
-  "steps":["Step 1...","Step 2..."],
+  "steps":["Step 1: Identify reactants and products","Step 2: Balance nitrogen: N2 → 2NH3","Step 3: Balance hydrogen: 3H2 → 2NH3"],
   "notes":"Conditions: 200atm, 400°C, iron catalyst"
 }
 If invalid input: {"error":"explanation"}`;
   try{
-    const res=await fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'openai',messages:[{role:'system',content:'Expert chemistry AI. Respond with valid JSON only.'},{role:'user',content:prompt}],temperature:0.1})});
+    const res=await fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'openai',messages:[{role:'system',content:'Expert chemistry AI. Respond with valid JSON only. No ads or promotional content.'},{role:'user',content:prompt}],temperature:0.1})});
     if(!res.ok) throw new Error(`Error ${res.status}`);
     const d=await res.json();
     const txt=d.choices?.[0]?.message?.content||d.content||'';
