@@ -7,434 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- KaTeX for math rendering -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-<style>
-/* ROOT */
-:root{--f:'Outfit',sans-serif;--fm:'JetBrains Mono',monospace;--spd:.35s;--chem:#4f8ef7;--phys:#00e87a;--math:#ff6b9d}
-[data-theme="dark"]{--bg:#07080f;--bg2:#0d0f1c;--surf:#111327;--surf2:#181b2e;--surf3:#1e2138;--border:rgba(100,120,255,.1);--border2:rgba(100,120,255,.22);--text:#eef0ff;--text2:#7a85a8;--text3:#3a4060;--acc:#4f8ef7;--glow:rgba(79,142,247,.3);--cyan:#00d4ff;--amber:#ffb347;--red:#ff4466;--purple:#a78bfa;--green:#00e87a}
-[data-theme="light"]{--bg:#f2f4ff;--bg2:#e8ecfa;--surf:#fff;--surf2:#f0f3fd;--surf3:#e4e8f8;--border:rgba(79,142,247,.12);--border2:rgba(79,142,247,.24);--text:#0a0b18;--text2:#3d4a70;--text3:#9099bf;--acc:#2563eb;--glow:rgba(37,99,235,.25);--cyan:#0ea5e9;--amber:#d97706;--red:#dc2626;--purple:#7c3aed;--green:#059669}
-
-/* RESET */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100vh;overflow-x:hidden;transition:background var(--spd),color var(--spd)}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px}
-
-/* BACKGROUNDS */
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(79,142,247,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,.018) 1px,transparent 1px);background-size:56px 56px}
-[data-theme="light"] .bg-grid{background-image:linear-gradient(rgba(37,99,235,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.035) 1px,transparent 1px)}
-.bg-radial{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 50% -5%,rgba(79,142,247,.06),transparent 65%)}
-[data-theme="light"] .bg-radial{background:radial-gradient(ellipse 70% 50% at 50% -5%,rgba(37,99,235,.05),transparent 65%)}
-.orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:orbDrift ease-in-out infinite}
-.orb1{width:500px;height:500px;background:rgba(79,142,247,.04);top:-100px;left:-100px;animation-duration:18s}
-.orb2{width:400px;height:400px;background:rgba(167,139,250,.035);bottom:-80px;right:-80px;animation-duration:22s;animation-delay:-6s}
-@keyframes orbDrift{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,30px)}}
-
-/* SPLASH */
-#splash{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity .8s,transform .8s}
-#splash.out{opacity:0;transform:scale(1.04);pointer-events:none}
-.splash-atom{position:relative;width:90px;height:90px;margin:0 auto 24px}
-.splash-nucleus{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:18px;height:18px;background:var(--acc);border-radius:50%;box-shadow:0 0 20px var(--acc),0 0 40px var(--acc);animation:nucGlow 2s ease-in-out infinite}
-@keyframes nucGlow{0%,100%{box-shadow:0 0 20px var(--acc),0 0 40px var(--acc)}50%{box-shadow:0 0 30px var(--acc),0 0 60px var(--acc)}}
-.splash-orbit{position:absolute;top:50%;left:50%;border:1.5px solid rgba(79,142,247,.4);border-radius:50%}
-.o1{width:60px;height:60px;margin:-30px 0 0 -30px;animation:spin1 2s linear infinite}
-.o2{width:80px;height:80px;margin:-40px 0 0 -40px;animation:spin2 3s linear infinite}
-.o3{width:100px;height:100px;margin:-50px 0 0 -50px;animation:spin3 4s linear infinite}
-@keyframes spin1{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes spin2{from{transform:rotate(120deg)}to{transform:rotate(480deg)}}
-@keyframes spin3{from{transform:rotate(240deg)}to{transform:rotate(600deg)}}
-.e-dot{position:absolute;width:5px;height:5px;background:#00d4ff;border-radius:50%;top:-2.5px;left:50%;margin-left:-2.5px;box-shadow:0 0 6px #00d4ff}
-.splash-name{font-family:var(--f);font-weight:800;font-size:38px;letter-spacing:-1px;text-align:center;margin-bottom:6px}
-.splash-name .lab{color:var(--cyan)}
-.splash-tag{font-family:var(--fm);font-size:10px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;text-align:center;margin-bottom:24px}
-.splash-bar{width:180px;height:2px;background:rgba(79,142,247,.15);border-radius:10px;margin:0 auto;overflow:hidden}
-.splash-prog{height:100%;background:linear-gradient(90deg,var(--acc),var(--cyan));border-radius:10px;animation:prog 2s cubic-bezier(.4,0,.2,1) forwards}
-@keyframes prog{from{width:0}to{width:100%}}
-
-/* WRAP */
-.wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:2}
-
-/* HEADER */
-.hdr{padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:32px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:500;background:rgba(7,8,15,.88);backdrop-filter:blur(24px) saturate(180%);opacity:0;animation:fadeD .6s ease .2s forwards}
-[data-theme="light"] .hdr{background:rgba(242,244,255,.92)}
-@keyframes fadeD{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-
-/* LOGO */
-.logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;opacity:0;animation:fadeUp .5s ease .3s forwards}
-.logo-atom{position:relative;width:44px;height:44px;flex-shrink:0}
-.logo-nuc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);transition:background var(--spd),box-shadow var(--spd)}
-.logo-orbit{position:absolute;top:50%;left:50%;border:1.5px solid;border-radius:50%;transition:border-color var(--spd)}
-.la1{width:26px;height:14px;margin:-7px 0 0 -13px;border-color:rgba(79,142,247,.7);animation:la1 2s linear infinite}
-.la2{width:26px;height:14px;margin:-7px 0 0 -13px;border-color:rgba(0,212,255,.6);transform:rotate(60deg);animation:la2 2.5s linear infinite}
-.la3{width:26px;height:14px;margin:-7px 0 0 -13px;border-color:rgba(167,139,250,.5);transform:rotate(120deg);animation:la3 3s linear infinite}
-@keyframes la1{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes la2{from{transform:rotate(60deg)}to{transform:rotate(420deg)}}
-@keyframes la3{from{transform:rotate(120deg)}to{transform:rotate(480deg)}}
-.la-dot{position:absolute;width:4px;height:4px;border-radius:50%;top:-2px;left:50%;margin-left:-2px;transition:background var(--spd),box-shadow var(--spd)}
-.la1 .la-dot{background:var(--acc);box-shadow:0 0 6px var(--acc)}
-.la2 .la-dot{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
-.la3 .la-dot{background:var(--purple);box-shadow:0 0 6px var(--purple)}
-[data-theme="light"] .la1{border-color:rgba(37,99,235,.7)}[data-theme="light"] .la2{border-color:rgba(14,165,233,.6)}[data-theme="light"] .la3{border-color:rgba(124,58,237,.5)}
-[data-theme="light"] .logo-nuc{background:#2563eb;box-shadow:0 0 10px #2563eb}
-[data-theme="light"] .la1 .la-dot{background:#2563eb;box-shadow:0 0 6px #2563eb}
-[data-theme="light"] .la2 .la-dot{background:#0ea5e9;box-shadow:0 0 6px #0ea5e9}
-[data-theme="light"] .la3 .la-dot{background:#7c3aed;box-shadow:0 0 6px #7c3aed}
-.logo-text{display:flex;flex-direction:column;gap:1px}
-.logo-name{font-weight:800;font-size:20px;letter-spacing:-.4px;line-height:1}
-.logo-name .lab{color:var(--cyan)}
-.logo-tag{font-family:var(--fm);font-size:8px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
-
-/* NAV */
-.nav{display:flex;gap:3px;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:4px;flex-wrap:nowrap;opacity:0;animation:fadeUp .5s ease .4s forwards}
-.nav-btn{padding:8px 14px;border-radius:10px;background:transparent;border:none;color:var(--text2);font-family:var(--f);font-weight:600;font-size:12px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:7px;white-space:nowrap;letter-spacing:.3px}
-.nav-btn svg{width:14px;height:14px;flex-shrink:0;transition:transform .2s}
-.nav-btn:hover svg{transform:scale(1.2) rotate(-5deg)}
-.nav-btn.act-chem{background:linear-gradient(135deg,rgba(79,142,247,.2),rgba(124,58,237,.13));color:var(--text);border:1px solid rgba(79,142,247,.32)}
-.nav-btn.act-phys{background:linear-gradient(135deg,rgba(0,232,122,.17),rgba(0,212,255,.11));color:var(--text);border:1px solid rgba(0,232,122,.32)}
-.nav-btn.act-math{background:linear-gradient(135deg,rgba(255,107,157,.17),rgba(167,139,250,.11));color:var(--text);border:1px solid rgba(255,107,157,.32)}
-
-/* HDR RIGHT */
-.hdr-right{display:flex;align-items:center;gap:7px;margin-left:auto;flex-shrink:0;opacity:0;animation:fadeUp .5s ease .5s forwards}
-.icon-btn{width:38px;height:38px;border-radius:10px;background:var(--surf2);border:1px solid var(--border);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .22s;flex-shrink:0}
-.icon-btn:hover{border-color:var(--border2);color:var(--text);transform:scale(1.07)}
-.icon-btn svg{width:16px;height:16px}
-#themeBtn:hover{transform:scale(1.07) rotate(180deg)}
-
-/* CREDITS POPUP */
-.cred-wrap{position:relative}
-.cred-popup{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--surf);border:1px solid var(--border2);border-radius:18px;padding:0;min-width:260px;z-index:700;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px var(--border);animation:popIn .2s ease;overflow:hidden}
-@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
-.cred-popup.open{display:block}
-.cred-popup-hdr{padding:16px 18px 12px;background:linear-gradient(135deg,rgba(79,142,247,.07),rgba(124,58,237,.05));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.cred-popup-hdr-icon{width:34px;height:34px;border-radius:9px;background:rgba(79,142,247,.12);border:1px solid rgba(79,142,247,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cred-popup-hdr-icon svg{width:15px;height:15px;color:var(--acc)}
-.cred-popup-title{font-weight:700;font-size:14px;letter-spacing:-.2px}
-.cred-popup-ver{font-family:var(--fm);font-size:9px;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.18);padding:2px 7px;border-radius:100px;margin-top:2px;display:inline-block}
-.cred-body{padding:12px 16px 14px}
-.cred-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;margin-bottom:4px;transition:background .18s;cursor:default}
-.cred-row:last-child{margin-bottom:0}
-.cred-row:hover{background:var(--surf2)}
-.cred-row-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cred-row-icon svg{width:13px;height:13px}
-.cri-dev{background:rgba(79,142,247,.1);color:var(--acc)}
-.cri-ai{background:rgba(0,232,122,.1);color:var(--green)}
-.cri-assist{background:rgba(167,139,250,.1);color:var(--purple)}
-.cri-date{background:rgba(255,179,71,.1);color:var(--amber)}
-.cred-row-info{flex:1;min-width:0}
-.cred-row-label{font-family:var(--fm);font-size:8.5px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px}
-.cred-row-val{font-size:12px;font-weight:600;color:var(--text);letter-spacing:-.1px}
-.cred-footer{padding:10px 16px;border-top:1px solid var(--border);background:var(--surf2);font-family:var(--fm);font-size:9px;color:var(--text3);text-align:center;letter-spacing:.5px}
-
-/* PAGES */
-.page{display:none}
-.page.active{display:block}
-
-/* HERO */
-.hero{text-align:center;padding:16px 0 40px}
-.hero-title{font-weight:900;font-size:clamp(36px,6vw,76px);letter-spacing:-2.5px;line-height:1.04;margin-bottom:16px;background:linear-gradient(135deg,var(--text) 0%,var(--acc) 60%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:heroTitleIn .9s cubic-bezier(.34,1.56,.64,1) .3s forwards}
-@keyframes heroTitleIn{from{opacity:0;transform:translateY(32px) scale(.95)}to{opacity:1;transform:none}}
-.hero-sub{font-size:17px;color:var(--text2);max-width:520px;margin:0 auto 22px;line-height:1.7;font-weight:400;opacity:0;animation:fadeUp .7s ease .75s forwards}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:100px;padding:7px 20px;font-family:var(--f);font-size:12px;font-weight:600;color:var(--cyan);letter-spacing:.5px;opacity:0;animation:fadeUp .6s ease 1.1s forwards}
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-
-/* PROFESSIONAL 3D ICONS */
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px}
-.subj-card{background:var(--surf);border:1.5px solid var(--border);border-radius:24px;padding:32px 26px;cursor:pointer;transition:all .32s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;opacity:0;animation:fadeUp .65s ease forwards;display:flex;flex-direction:column;align-items:center;text-align:center}
-.subj-card:nth-child(1){animation-delay:.45s}.subj-card:nth-child(2){animation-delay:.6s}.subj-card:nth-child(3){animation-delay:.75s}
-.subj-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .32s;border-radius:23px}
-.subj-card.c::before{background:radial-gradient(ellipse at 50% 0%,rgba(79,142,247,.12),transparent 70%)}
-.subj-card.p::before{background:radial-gradient(ellipse at 50% 0%,rgba(0,232,122,.1),transparent 70%)}
-.subj-card.m::before{background:radial-gradient(ellipse at 50% 0%,rgba(255,107,157,.1),transparent 70%)}
-.subj-card:hover::before{opacity:1}
-.subj-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 20px 56px rgba(0,0,0,.28)}
-.subj-card.c:hover{border-color:rgba(79,142,247,.55);box-shadow:0 20px 56px rgba(79,142,247,.2)}
-.subj-card.p:hover{border-color:rgba(0,232,122,.55);box-shadow:0 20px 56px rgba(0,232,122,.17)}
-.subj-card.m:hover{border-color:rgba(255,107,157,.55);box-shadow:0 20px 56px rgba(255,107,157,.17)}
-
-/* Professional 3D Icons - Chemistry (Atom) */
-.sc-icon-wrap{width:100px;height:100px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative}
-.atom-3d{position:relative;width:80px;height:80px;transform-style:preserve-3d;animation:atomSpin 8s infinite linear}
-.atom-nucleus{position:absolute;width:20px;height:20px;background:radial-gradient(circle at 30% 30%, #fff, var(--chem));border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 30px var(--chem);z-index:10}
-.atom-ring{position:absolute;width:60px;height:60px;border-radius:50%;border:3px solid;transform-style:preserve-3d;transform-origin:center}
-.ring1{top:10px;left:10px;border-color:rgba(79,142,247,.8);transform:rotateX(60deg) rotateY(0deg);box-shadow:0 0 20px rgba(79,142,247,.3)}
-.ring2{top:10px;left:10px;border-color:rgba(0,212,255,.8);transform:rotateX(60deg) rotateY(120deg);box-shadow:0 0 20px rgba(0,212,255,.3)}
-.ring3{top:10px;left:10px;border-color:rgba(167,139,250,.8);transform:rotateX(60deg) rotateY(240deg);box-shadow:0 0 20px rgba(167,139,250,.3)}
-.electron{position:absolute;width:6px;height:6px;background:radial-gradient(circle at 30% 30%, #fff, var(--cyan));border-radius:50%;top:-3px;left:50%;transform:translateX(-50%);box-shadow:0 0 10px var(--cyan)}
-@keyframes atomSpin{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
-
-/* Professional 3D Icons - Physics (Pendulum) */
-.pendulum-3d{position:relative;width:70px;height:100px;transform-style:preserve-3d}
-.pendulum-frame{position:absolute;top:0;left:50%;transform:translateX(-50%);width:6px;height:60px;background:linear-gradient(90deg, #aaa, #ddd, #aaa);border-radius:3px;box-shadow:0 0 15px rgba(0,232,122,.3)}
-.pendulum-bob{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:30px;height:30px;background:radial-gradient(circle at 30% 30%, #fff, #ffd700);border-radius:50%;box-shadow:0 0 30px #ffd700;animation:pendulumSwing 2s ease-in-out infinite}
-.pendulum-shadow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:40px;height:10px;background:rgba(0,0,0,.3);border-radius:50%;filter:blur(3px)}
-@keyframes pendulumSwing{0%,100%{transform:translateX(-50%) rotate(0deg)}25%{transform:translateX(-50%) translateX(-15px) rotate(-15deg)}75%{transform:translateX(-50%) translateX(15px) rotate(15deg)}}
-
-/* Professional 3D Icons - Math (Triangle) */
-.triangle-3d{position:relative;width:80px;height:80px;transform-style:preserve-3d;animation:triangleFloat 3s ease-in-out infinite}
-.triangle-face{position:absolute;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid;transform-origin:center}
-.face1{top:5px;left:0;border-bottom-color:rgba(255,107,157,.9);transform:rotateX(30deg) rotateY(0deg);filter:drop-shadow(0 10px 10px rgba(255,107,157,.3))}
-.face2{top:5px;left:0;border-bottom-color:rgba(167,139,250,.9);transform:rotateX(30deg) rotateY(120deg);filter:drop-shadow(0 10px 10px rgba(167,139,250,.3))}
-.face3{top:5px;left:0;border-bottom-color:rgba(0,212,255,.9);transform:rotateX(30deg) rotateY(240deg);filter:drop-shadow(0 10px 10px rgba(0,212,255,.3))}
-.triangle-glow{position:absolute;width:40px;height:40px;background:radial-gradient(circle, rgba(255,107,157,.2), transparent 70%);border-radius:50%;top:20px;left:20px;filter:blur(10px)}
-@keyframes triangleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-
-.sc-label{font-weight:800;font-size:24px;letter-spacing:-.5px;margin-bottom:4px}
-.c .sc-label{color:var(--chem)}.p .sc-label{color:var(--phys)}.m .sc-label{color:var(--math)}
-.sc-enter{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--text3);transition:all .2s;margin-top:12px}
-.sc-enter svg{width:14px;height:14px;transition:transform .2s}
-.subj-card:hover .sc-enter{color:var(--text2)}
-.subj-card:hover .sc-enter svg{transform:translateX(4px)}
-
-/* SUBJECT PAGES */
-.subj-page-hdr{display:flex;align-items:center;gap:10px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);opacity:0;animation:fadeUp .5s ease .1s forwards;flex-wrap:wrap}
-.back-btn{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:12px;background:var(--surf2);border:1.5px solid var(--border);color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;transition:all .22s;flex-shrink:0;letter-spacing:-.1px}
-.back-btn svg{width:14px;height:14px;transition:transform .22s}
-.back-btn:hover{border-color:var(--acc);color:var(--acc);transform:translateX(-2px);background:rgba(79,142,247,.06)}
-.back-btn:hover svg{transform:translateX(-3px)}
-.spg-title{font-weight:800;font-size:24px;letter-spacing:-.5px}
-.spg-divider{flex:1;height:1px;background:var(--border);margin:0 12px}
-.spg-badge{font-family:var(--fm);font-size:10px;padding:4px 12px;border-radius:100px;border:1px solid;letter-spacing:1px}
-
-/* Sub-tabs */
-.stabs{display:flex;gap:4px;background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:5px;margin-bottom:24px;overflow-x:auto;opacity:0;animation:fadeUp .5s ease .2s forwards}
-.stab{padding:10px 16px;border-radius:10px;background:transparent;border:1.5px solid transparent;color:var(--text2);font-family:var(--f);font-weight:600;font-size:13px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:8px;white-space:nowrap;letter-spacing:.2px}
-.stab svg{width:14px;height:14px;transition:transform .2s;flex-shrink:0}
-.stab:hover{background:var(--surf2);color:var(--text);border-color:var(--border)}
-.stab.active{background:linear-gradient(135deg,rgba(79,142,247,.2),rgba(124,58,237,.13));color:var(--text);border-color:rgba(79,142,247,.35)}
-.stab-badge{background:rgba(0,232,122,.15);color:var(--green);font-family:var(--fm);font-size:8px;padding:2px 6px;border-radius:100px;font-weight:700;letter-spacing:.5px;border:1px solid rgba(0,232,122,.25)}
-
-/* AI SOLVER */
-.solver-card{background:var(--surf);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,.2);opacity:0;animation:cardIn .6s cubic-bezier(.34,1.56,.64,1) .25s forwards}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
-.solver-card:hover{box-shadow:0 8px 60px rgba(79,142,247,.1)}
-.card-hdr{padding:20px 24px;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(79,142,247,.04),transparent);display:flex;align-items:center;gap:12px}
-.ch-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ch-icon svg{width:18px;height:18px}
-.ci-chem{background:rgba(79,142,247,.12);color:var(--chem)}.ci-phys{background:rgba(0,232,122,.1);color:var(--phys)}.ci-math{background:rgba(255,107,157,.1);color:var(--math)}
-.ch-title{font-weight:700;font-size:15px;letter-spacing:-.2px}
-.ch-sub{font-size:11px;color:var(--text2);margin-top:2px;font-weight:600}
-.solver-body{padding:24px}
-
-/* Input */
-.q-input-wrap{position:relative;margin-bottom:10px}
-.q-input{width:100%;padding:16px 104px 16px 18px;background:var(--surf2);border:2px solid var(--border);border-radius:14px;color:var(--text);font-family:var(--f);font-size:15px;font-weight:400;outline:none;transition:all .28s;resize:none;min-height:56px;max-height:150px;line-height:1.5}
-.q-input:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(79,142,247,.07);background:var(--surf3)}
-.q-input::placeholder{color:var(--text3);font-size:14px}
-.q-btns{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
-.qb{width:37px;height:37px;border-radius:9px;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0}
-.qb svg{width:15px;height:15px}
-.voice-qb{background:var(--surf3);border:1px solid var(--border);color:var(--text2)}
-.voice-qb:hover,.voice-qb.rec{border-color:var(--acc);color:var(--acc);background:rgba(79,142,247,.08)}
-.voice-qb.rec{animation:recPulse 1s ease infinite}
-@keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,.3)}50%{box-shadow:0 0 0 6px rgba(79,142,247,0)}}
-.send-qb{background:linear-gradient(135deg,var(--acc),var(--purple));color:#fff;border:none;gap:5px;padding:0 14px;width:auto;font-family:var(--f);font-weight:700;font-size:12px}
-.send-qb:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(79,142,247,.4)}
-
-/* Voice bar */
-.voice-bar{display:none;align-items:center;gap:12px;padding:10px 16px;background:rgba(79,142,247,.06);border:1px solid rgba(79,142,247,.18);border-radius:12px;margin-bottom:10px}
-.voice-bar.show{display:flex;animation:fadeUp .3s ease}
-.voice-bar-waves{display:flex;align-items:center;gap:3px;height:24px}
-.vw{width:3px;border-radius:2px;background:var(--acc);animation:vwave 1s ease-in-out infinite}
-.vw:nth-child(1){height:6px;animation-delay:0s}.vw:nth-child(2){height:16px;animation-delay:.1s}.vw:nth-child(3){height:22px;animation-delay:.2s}.vw:nth-child(4){height:14px;animation-delay:.3s}.vw:nth-child(5){height:8px;animation-delay:.4s}
-@keyframes vwave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.6)}}
-.vbar-text{font-family:var(--fm);font-size:11px;color:var(--acc);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.vbar-stop{padding:5px 12px;border-radius:8px;background:rgba(255,68,102,.1);border:1px solid rgba(255,68,102,.25);color:var(--red);font-family:var(--f);font-weight:700;font-size:11px;cursor:pointer;transition:all .18s;flex-shrink:0}
-.vbar-stop:hover{background:rgba(255,68,102,.2)}
-
-/* Thinking */
-.thinking{display:none;align-items:center;gap:10px;padding:12px 16px;background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.16);border-radius:11px;margin-bottom:10px;font-size:12px;color:var(--purple);font-weight:500}
-.thinking.show{display:flex;animation:fadeUp .3s ease}
-.tdots{display:flex;gap:4px}
-.td{width:5px;height:5px;border-radius:50%;background:var(--purple);animation:dotBounce .8s ease-in-out infinite}
-.td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
-@keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-
-/* Error */
-.err-msg{display:none;align-items:center;gap:9px;padding:11px 15px;background:rgba(255,68,102,.07);border:1px solid rgba(255,68,102,.22);border-radius:11px;margin-bottom:10px;font-size:12px;color:var(--red)}
-.err-msg.show{display:flex;animation:fadeUp .3s ease}
-.err-msg svg{width:14px;height:14px;flex-shrink:0}
-
-/* Answer box */
-.answer-box{display:none;animation:ansIn .5s cubic-bezier(.34,1.56,.64,1)}
-.answer-box.show{display:block}
-@keyframes ansIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.ans-banner{background:var(--bg2);border:1px solid var(--border2);border-radius:14px 14px 0 0;padding:20px 22px;position:relative;overflow:hidden}
-.ans-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(79,142,247,.05),transparent 70%);pointer-events:none}
-.ans-label{font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
-.ans-label::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;animation:blink 1.5s infinite}
-.ans-content{font-size:14px;line-height:1.8;color:var(--text)}
-.ans-content strong{color:var(--text);font-weight:700}
-.ans-content code{background:rgba(79,142,247,.1);color:var(--cyan);padding:1px 6px;border-radius:4px;font-family:var(--fm);font-size:12px}
-.ans-content ul{padding-left:20px;margin:8px 0}
-.ans-content li{margin-bottom:4px}
-/* KaTeX overrides for dark/light theme */
-.ans-content .katex{font-size:1em}
-.ans-content .katex-display{margin:12px 0;overflow-x:auto;overflow-y:hidden}
-[data-theme="dark"] .ans-content .katex{color:var(--text)}
-[data-theme="light"] .ans-content .katex{color:var(--text)}
-.ans-meta{background:var(--surf2);border:1px solid var(--border);border-radius:0 0 14px 14px;border-top:none;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.ans-subj{font-family:var(--fm);font-size:9.5px;color:var(--text3);display:flex;align-items:center;gap:5px;letter-spacing:.5px}
-.copy-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:7px;background:var(--surf3);border:1px solid var(--border);color:var(--text2);font-family:var(--f);font-weight:600;font-size:11px;cursor:pointer;transition:all .18s}
-.copy-btn svg{width:12px;height:12px}
-.copy-btn:hover{border-color:var(--acc);color:var(--acc)}
-
-/* REACTION CALC */
-.rxn-input-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.rxn-input{flex:1;min-width:220px;padding:14px 18px;background:var(--surf2);border:2px solid var(--border);border-radius:13px;color:var(--text);font-family:var(--fm);font-size:14px;font-weight:500;outline:none;transition:all .28s}
-.rxn-input:focus{border-color:var(--chem);box-shadow:0 0 0 4px rgba(79,142,247,.07);background:var(--surf3)}
-.rxn-input::placeholder{color:var(--text3);font-family:var(--f);font-size:13px;font-weight:400}
-.rxn-meta{font-size:11px;color:var(--text2);margin-bottom:12px;line-height:1.6;padding:8px 12px;background:rgba(79,142,247,.04);border:1px solid var(--border);border-radius:9px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.chip{padding:5px 12px;border-radius:100px;background:var(--surf2);border:1px solid var(--border);color:var(--text2);font-family:var(--fm);font-size:10px;cursor:pointer;transition:all .18s;line-height:1.4}
-.chip:hover{transform:translateY(-2px);background:var(--surf3);border-color:var(--border2);color:var(--text)}
-.solve-btn{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,#4f8ef7,#7c3aed);border:none;color:#fff;font-family:var(--f);font-weight:800;font-size:14px;letter-spacing:.4px;cursor:pointer;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 4px 20px rgba(79,142,247,.3);position:relative;overflow:hidden}
-.solve-btn::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:rgba(255,255,255,.08);transform:skewX(-20deg);transition:left .5s}
-.solve-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(79,142,247,.5)}
-.solve-btn:hover::after{left:120%}
-.solve-btn svg{width:15px;height:15px}
-.solve-btn:disabled{opacity:.8;pointer-events:none}
-.spin{animation:spinA .7s linear infinite;display:inline-flex}
-@keyframes spinA{to{transform:rotate(360deg)}}
-.rxn-result{margin-top:20px;display:none;animation:ansIn .5s cubic-bezier(.34,1.56,.64,1)}
-.rxn-result.show{display:block}
-.eq-banner{background:var(--bg2);border:1px solid rgba(0,232,122,.18);border-radius:14px 14px 0 0;padding:20px 24px;text-align:center;position:relative;overflow:hidden}
-.eq-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,232,122,.05),transparent 70%);pointer-events:none}
-.eq-lbl{font-family:var(--fm);font-size:9px;color:var(--phys);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:7px}
-.eq-lbl::before{content:'';width:5px;height:5px;background:var(--phys);border-radius:50%;animation:blink 1.5s infinite}
-.eq-line{font-family:var(--fm);font-size:clamp(15px,2.8vw,22px);font-weight:600;letter-spacing:1.5px;word-break:break-word;line-height:1.6}
-.eq-coeff{color:var(--cyan)}.eq-arrow{color:var(--chem);animation:arPulse 2s infinite}.eq-plus{color:var(--text2)}.eq-react{color:var(--text)}.eq-prod{color:var(--phys)}
-@keyframes arPulse{0%,100%{opacity:1}50%{opacity:.4}}
-.rxn-name-lbl{font-size:11px;color:var(--text2);margin-top:7px;font-family:var(--fm)}
-.compounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));border:1px solid rgba(0,232,122,.12);border-top:none}
-.ccard{padding:16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surf);transition:all .2s}
-.ccard:hover{background:var(--surf2)}
-.ccard-role{font-family:var(--fm);font-size:7.5px;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
-.cr-r{color:var(--red)}.cr-p{color:var(--phys)}
-.ccard-formula{font-family:var(--fm);font-size:13px;font-weight:600;color:var(--cyan);margin-bottom:4px}
-.ccard-name{font-size:10px;color:var(--text3);margin-bottom:6px}
-.ccard-mass{font-family:var(--f);font-size:20px;font-weight:800;color:var(--text)}
-.ccard-unit{font-family:var(--fm);font-size:9px;color:var(--chem);margin-top:1px}
-.ccard-mol{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--fm)}
-.ratio-sec{border:1px solid rgba(0,232,122,.12);border-top:none;border-radius:0 0 14px 14px;padding:14px 18px;background:var(--surf2)}
-.ratio-lbl{font-family:var(--fm);font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:9px}
-.ratio-row{display:flex;align-items:center;gap:9px;margin-bottom:7px;flex-wrap:wrap}
-.ratio-f{font-family:var(--fm);font-size:11px;color:var(--text2);min-width:74px}
-.ratio-bar-wrap{flex:1;min-width:80px;height:5px;background:var(--surf3);border-radius:10px;overflow:hidden}
-.ratio-bar{height:100%;border-radius:10px;transition:width .8s cubic-bezier(.34,1.56,.64,1);width:0}
-.ratio-val{font-family:var(--fm);font-size:10px;color:var(--text2);min-width:54px;text-align:right}
-.steps-wrap{margin-top:10px;background:var(--surf2);border:1px solid var(--border);border-radius:13px;overflow:hidden}
-.steps-tog{width:100%;padding:12px 18px;background:transparent;border:none;color:var(--text2);font-family:var(--f);font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
-.steps-tog:hover{color:var(--text)}
-.steps-tog svg.chev{transition:transform .3s cubic-bezier(.34,1.56,.64,1);width:14px;height:14px}
-.steps-tog.open .chev{transform:rotate(180deg)}
-.steps-body{display:none;padding:0 18px 14px}
-.steps-body.open{display:block}
-.step{display:flex;gap:10px;margin-bottom:8px;padding:10px 12px;background:var(--surf);border-radius:8px;border:1px solid var(--border);transition:all .2s}
-.step:hover{border-color:rgba(167,139,250,.2);transform:translateX(3px)}
-.step:last-child{margin-bottom:0}
-.sn{width:22px;height:22px;background:rgba(167,139,250,.12);color:var(--purple);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;font-weight:600;flex-shrink:0}
-.sc{font-size:11px;color:var(--text2);line-height:1.6}
-.sc strong{color:var(--text)}
-.sc code{background:rgba(79,142,247,.1);color:var(--cyan);padding:1px 5px;border-radius:3px;font-family:var(--fm);font-size:10px}
-.rxn-thinking{margin-top:14px;padding:12px 16px;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.18);border-radius:11px;display:none;align-items:center;gap:10px;font-size:12px;color:var(--purple)}
-.rxn-thinking.show{display:flex}
-
-/* PERIODIC TABLE */
-.pt-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;opacity:0;animation:fadeUp .5s ease .15s forwards}
-.pt-hdr-title{font-weight:800;font-size:18px}
-.pt-legend{display:flex;flex-wrap:wrap;gap:6px}
-.lg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);cursor:pointer;padding:4px 9px;border-radius:7px;border:1.5px solid transparent;transition:all .18s;font-weight:600}
-.lg:hover{border-color:var(--border);background:var(--surf2)}
-.lg.hl-active{border-color:var(--border2);background:var(--surf3);color:var(--text)}
-.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.pt-scroll{overflow-x:auto;padding-bottom:8px;opacity:0;animation:fadeUp .5s ease .25s forwards}
-.pt-grid{display:grid;grid-template-columns:repeat(18,minmax(48px,1fr));gap:2.5px;min-width:900px}
-.ec{aspect-ratio:1;border-radius:7px;background:var(--surf2);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;min-height:48px}
-.ec::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity .18s}
-.ec:hover{transform:scale(1.15) translateZ(0);z-index:10;box-shadow:0 10px 28px rgba(0,0,0,.45);border-color:rgba(255,255,255,.28)}
-.ec:hover::after{opacity:1}
-.ec .an{font-family:var(--fm);font-size:6.5px;color:rgba(255,255,255,.4);position:absolute;top:3px;left:3px}
-.ec .sy{font-family:var(--f);font-weight:800;font-size:12px;color:rgba(255,255,255,.95);line-height:1}
-.ec .en{font-size:5.5px;color:rgba(255,255,255,.4);margin-top:1px;text-align:center}
-.ec .em{font-family:var(--fm);font-size:5.5px;color:rgba(255,255,255,.3);margin-top:1px}
-.ec.emp{background:transparent;border:none;cursor:default;pointer-events:none}
-.ec.emp:hover{transform:none;box-shadow:none}
-.ec.lp,.ec.ap{font-size:7px;color:var(--text2);font-family:var(--fm);background:rgba(255,255,255,.02);cursor:default;text-align:center;line-height:1.4;font-style:italic;pointer-events:none}
-.ec{transition:all .3s cubic-bezier(.4,0,.2,1)}
-.ec.dimmed{opacity:.08 !important;transform:scale(.92) !important;filter:grayscale(1) !important;pointer-events:none !important}
-.ec.hl-elem{transform:scale(1.04) !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 2px rgba(255,255,255,.2) !important;z-index:5}
-.cat-alkali{background:linear-gradient(135deg,#7f1d1d,#991b1b);border-color:rgba(239,68,68,.3)}.cat-alkali::after{background:linear-gradient(135deg,rgba(239,68,68,.18),transparent)}
-.cat-alkaline{background:linear-gradient(135deg,#78350f,#92400e);border-color:rgba(245,158,11,.3)}.cat-alkaline::after{background:linear-gradient(135deg,rgba(245,158,11,.18),transparent)}
-.cat-transition{background:linear-gradient(135deg,#1e3a5f,#1d4ed8);border-color:rgba(59,130,246,.3)}.cat-transition::after{background:linear-gradient(135deg,rgba(59,130,246,.18),transparent)}
-.cat-post{background:linear-gradient(135deg,#164e63,#0e7490);border-color:rgba(6,182,212,.3)}.cat-post::after{background:linear-gradient(135deg,rgba(6,182,212,.18),transparent)}
-.cat-metalloid{background:linear-gradient(135deg,#14532d,#166534);border-color:rgba(34,197,94,.3)}.cat-metalloid::after{background:linear-gradient(135deg,rgba(34,197,94,.18),transparent)}
-.cat-nonmetal{background:linear-gradient(135deg,#2e1065,#4c1d95);border-color:rgba(139,92,246,.3)}.cat-nonmetal::after{background:linear-gradient(135deg,rgba(139,92,246,.18),transparent)}
-.cat-noble{background:linear-gradient(135deg,#1a1a2e,#16213e);border-color:rgba(0,212,255,.3)}.cat-noble::after{background:linear-gradient(135deg,rgba(0,212,255,.13),transparent)}
-.cat-lanthanide{background:linear-gradient(135deg,#3b0764,#581c87);border-color:rgba(168,85,247,.3)}.cat-lanthanide::after{background:linear-gradient(135deg,rgba(168,85,247,.18),transparent)}
-.cat-actinide{background:linear-gradient(135deg,#422006,#78350f);border-color:rgba(249,115,22,.3)}.cat-actinide::after{background:linear-gradient(135deg,rgba(249,115,22,.18),transparent)}
-.cat-hydrogen{background:linear-gradient(135deg,#134e4a,#115e59);border-color:rgba(20,184,166,.3)}.cat-hydrogen::after{background:linear-gradient(135deg,rgba(20,184,166,.18),transparent)}
-.group-hl-label{display:none;margin-bottom:12px;padding:10px 16px;background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(79,142,247,.06));border:1px solid rgba(0,212,255,.22);border-radius:12px;font-family:var(--fm);font-size:12px;color:var(--cyan);align-items:center;gap:10px;animation:fadeUp .3s ease}
-.group-hl-label.show{display:flex}
-.group-hl-label strong{color:var(--text);font-family:var(--f);font-weight:700;font-size:13px}
-.group-hl-label button{margin-left:auto;background:rgba(255,68,102,.08);border:1px solid rgba(255,68,102,.2);color:var(--red);cursor:pointer;font-size:11px;font-weight:700;font-family:var(--f);padding:4px 10px;border-radius:7px;transition:all .18s}
-.group-hl-label button:hover{background:rgba(255,68,102,.18)}
-
-/* Element modal */
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(14px)}
-.moverlay.on{display:flex}
-.mcard{background:var(--surf);border:1px solid var(--border2);border-radius:24px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;animation:mIn .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.55)}
-@keyframes mIn{from{opacity:0;transform:scale(.82) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.mhero{padding:24px;display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(79,142,247,.07),rgba(124,58,237,.05));border-bottom:1px solid var(--border)}
-.msymbox{width:76px;height:76px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;position:relative}
-.msymbox .man{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.5);position:absolute;top:5px;left:7px}
-.msym{font-family:var(--f);font-weight:900;font-size:32px;color:#fff;line-height:1}
-.mmas{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,.38)}
-.mname{font-family:var(--f);font-weight:800;font-size:22px}
-.msub{font-size:11px;color:var(--text2);margin-top:2px}
-.mtag{display:inline-block;margin-top:7px;padding:3px 9px;border-radius:100px;font-family:var(--fm);font-size:9px;font-weight:600}
-.mbody{padding:18px}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
-.mf{padding:11px;background:var(--surf2);border:1px solid var(--border);border-radius:9px;transition:all .2s}
-.mf:hover{border-color:var(--border2)}
-.mfl{font-family:var(--fm);font-size:8.5px;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px}
-.mfv{font-family:var(--f);font-weight:700;font-size:13px;color:var(--text)}
-.mfs{font-size:10px;color:var(--text2);margin-top:1px;font-family:var(--fm)}
-.mdesc{padding:11px;background:rgba(79,142,247,.05);border:1px solid rgba(79,142,247,.1);border-radius:9px;font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:11px}
-.mclose{width:100%;padding:11px;border-radius:9px;background:var(--surf2);border:1px solid var(--border);color:var(--text2);font-family:var(--f);font-weight:700;font-size:12px;cursor:pointer;transition:all .2s}
-.mclose:hover{background:rgba(255,68,102,.08);border-color:rgba(255,68,102,.25);color:var(--red)}
-.econfig{font-family:var(--fm);font-size:11px;color:var(--cyan)}
-
-/* FOOTER — Outfit font enforced */
-.ftr{margin-top:40px;padding:18px 24px;background:var(--surf);border:1px solid var(--border);border-radius:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;opacity:0;animation:fadeUp .6s ease .8s forwards}
-.ftr-logo{font-weight:800;font-size:17px;letter-spacing:-.3px;font-family:var(--f)}
-.ftr-logo .lab{color:var(--cyan)}
-.ftr-copy{font-family:var(--f);font-size:11px;font-weight:500;letter-spacing:.2px}
-[data-theme="dark"] .ftr-copy{color:#eef0ff}
-[data-theme="light"] .ftr-copy{color:#0a0b18}
-
-/* Footer and subtext color enforcement */
-[data-theme="dark"] .hero-sub,[data-theme="dark"] .sc-enter,[data-theme="dark"] .logo-tag{color:var(--text2)}
-[data-theme="light"] .hero-sub,[data-theme="light"] .sc-enter,[data-theme="light"] .logo-tag{color:var(--text2)}
-
-/* TOAST */
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surf2);border:1px solid var(--border2);border-radius:100px;padding:10px 18px;font-size:12px;color:var(--text);z-index:99999;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s;opacity:0;display:flex;align-items:center;gap:7px;box-shadow:0 8px 26px rgba(0,0,0,.4);white-space:nowrap;backdrop-filter:blur(20px)}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-.toast-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-
-/* Fade-in utility */
-.fade-section{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
-.fade-section.in-view{opacity:1;transform:none}
-
-/* RESPONSIVE */
-@media(max-width:900px){.cards-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.cards-grid{grid-template-columns:1fr}.hdr{gap:6px;padding:10px 0}.nav{gap:2px;padding:3px}.nav-btn{padding:7px 10px;font-size:11px;gap:5px}.wrap{padding:0 14px 60px}.hero-title{letter-spacing:-1px}.pt-grid{gap:1.5px}.ec{min-height:40px}.ec .sy{font-size:10px}.subj-page-hdr{flex-wrap:wrap;gap:8px}.stabs{gap:3px}.stab{padding:9px 12px;font-size:12px}}
-@media(max-width:480px){.hero-title{font-size:28px}.cards-grid{gap:12px}.nav-btn span{display:none}.hdr{flex-wrap:nowrap;justify-content:space-between}.logo-tag{display:none}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -482,7 +55,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
   </div>
 
   <nav class="nav" id="mainNav">
-    <!-- Updated nav icons -->
     <button class="nav-btn act-chem" id="nav-chem" onclick="switchSection('chem')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v8l-4 9h14L15 11V3"/><path d="M7 16h10"/></svg>
       <span>Chemistry</span>
@@ -492,7 +64,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
       <span>Physics</span>
     </button>
     <button class="nav-btn" id="nav-math" onclick="switchSection('math')">
-      <!-- Pie sign for Math -->
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>
       <span>Mathematics</span>
     </button>
@@ -510,7 +81,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
           </div>
           <div>
             <div class="cred-popup-title">ScienceLab</div>
-            <div class="cred-popup-ver">V1.0 · 2026</div>
+            <div class="cred-popup-ver">V2.0 · 2026</div>
           </div>
         </div>
         <div class="cred-body">
@@ -529,7 +100,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
             </div>
             <div class="cred-row-info">
               <div class="cred-row-label">AI Engine</div>
-              <div class="cred-row-val">Pollinations.ai</div>
+              <div class="cred-row-val">Unnamed</div>
             </div>
           </div>
           <div class="cred-row">
@@ -537,8 +108,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
             <div class="cred-row-info">
-              <div class="cred-row-label">AI Assistance</div>
-              <div class="cred-row-val">Claude · DeepSeek</div>
+              <div class="cred-row-label">AI Models</div>
+              <div class="cred-row-val">Unnamed</div>
             </div>
           </div>
           <div class="cred-row">
@@ -564,12 +135,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 <div class="page active" id="home-page">
   <section class="hero">
     <div class="hero-title">AI POWERED<br>SMART STUDY COMPANION!</div>
-    <p class="hero-sub">Solve any problem related to<br>Chemistry · Physics · Mathematics</p>
+    <p class="hero-sub">Solve any problem related to<br> Chemistry · Physics · Mathematics</p>
     <div class="hero-badge">UNDER MAINTENANCE</div>
   </section>
 
   <div class="cards-grid" id="homeCards">
-    <!-- Chemistry Card with 3D Atom -->
     <div class="subj-card c" onclick="gotoSubject('chem')">
       <div class="sc-icon-wrap">
         <div class="atom-3d">
@@ -586,7 +156,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
       </div>
     </div>
 
-    <!-- Physics Card with 3D Pendulum -->
     <div class="subj-card p" onclick="gotoSubject('phys')">
       <div class="sc-icon-wrap">
         <div class="pendulum-3d">
@@ -602,7 +171,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
       </div>
     </div>
 
-    <!-- Math Card with 3D Triangle -->
     <div class="subj-card m" onclick="gotoSubject('math')">
       <div class="sc-icon-wrap">
         <div class="triangle-3d">
@@ -658,7 +226,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </button>
   </div>
 
-  <!-- Chem AI -->
+  <!-- Chem AI Tab -->
   <div id="c-ai" class="chem-sub active">
     <div class="solver-card">
       <div class="card-hdr">
@@ -694,7 +262,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </div>
   </div>
 
-  <!-- Chem Reaction Calculator -->
+  <!-- Chem Reaction Calculator Tab -->
   <div id="c-rxn" class="chem-sub" style="display:none">
     <div class="solver-card">
       <div class="card-hdr">
@@ -717,7 +285,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           SOLVE WITH AI
         </button>
-        <div class="rxn-thinking show" id="rxnThinking" style="display:none"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Solving reaction...</span></div>
+        <div class="rxn-thinking" id="rxnThinking" style="display:none"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div><span>Solving reaction...</span></div>
         <div class="err-msg" id="rxn-err" style="margin-top:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg><span id="rxn-emsg"></span></div>
         <div class="rxn-result" id="rxnResult">
           <div class="eq-banner"><div class="eq-lbl">BALANCED EQUATION</div><div class="eq-line" id="eqLine"></div><div class="rxn-name-lbl" id="rxnName"></div></div>
@@ -729,7 +297,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     </div>
   </div>
 
-  <!-- Periodic Table -->
+  <!-- Periodic Table Tab -->
   <div id="c-pt" class="chem-sub" style="display:none">
     <div class="pt-hdr">
       <div class="pt-hdr-title">Periodic Table of Elements</div>
@@ -802,7 +370,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
     <div class="spg-title">Mathematics Lab</div>
     <div class="spg-divider"></div>
     <div class="spg-badge" style="color:var(--math);border-color:rgba(255,107,157,.3);display:flex;align-items:center;gap:6px">
-      <!-- Pie sign for math badge -->
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l8.4 4.8"/><path d="M2 12h10L7.6 6.8"/></svg>
       MATHEMATICS
     </div>
@@ -836,608 +403,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);min-height:100v
 
 </div><!-- /wrap -->
 
-<script>
-/* ══════════════════════════════════
-   ELEMENT DATA (all 118) - KEPT FROM ORIGINAL
-══════════════════════════════════ */
-const EL=[
-  {n:1,sym:"H",name:"Hydrogen",mass:1.008,cat:"hydrogen",group:1,period:1,config:"1s¹",state:"Gas",melt:-259.16,boil:-252.88,density:"0.0000899 g/L",disc:"1766",by:"Cavendish",desc:"Lightest and most abundant element. Makes up ~75% of all normal matter."},
-  {n:2,sym:"He",name:"Helium",mass:4.003,cat:"noble",group:18,period:1,config:"1s²",state:"Gas",melt:-272.2,boil:-268.9,density:"0.000179 g/L",disc:"1868",by:"Janssen",desc:"Second most abundant element. Inert noble gas used in MRI and cryogenics."},
-  {n:3,sym:"Li",name:"Lithium",mass:6.94,cat:"alkali",group:1,period:2,config:"[He] 2s¹",state:"Solid",melt:180.5,boil:1330,density:"0.534 g/cm³",disc:"1817",by:"Arfwedson",desc:"Lightest metal. Key component of lithium-ion batteries."},
-  {n:4,sym:"Be",name:"Beryllium",mass:9.012,cat:"alkaline",group:2,period:2,config:"[He] 2s²",state:"Solid",melt:1287,boil:2468,density:"1.85 g/cm³",disc:"1798",by:"Vauquelin",desc:"Hard alkaline earth metal used in aerospace and X-ray windows."},
-  {n:5,sym:"B",name:"Boron",mass:10.81,cat:"metalloid",group:13,period:2,config:"[He] 2s² 2p¹",state:"Solid",melt:2076,boil:3927,density:"2.37 g/cm³",disc:"1808",by:"Gay-Lussac",desc:"Metalloid essential for plant growth. Used in glass and ceramics."},
-  {n:6,sym:"C",name:"Carbon",mass:12.011,cat:"nonmetal",group:14,period:2,config:"[He] 2s² 2p²",state:"Solid",melt:3550,boil:4827,density:"2.267 g/cm³",disc:"Ancient",by:"Ancients",desc:"Basis of all known life. Exists as diamond, graphite, and fullerenes."},
-  {n:7,sym:"N",name:"Nitrogen",mass:14.007,cat:"nonmetal",group:15,period:2,config:"[He] 2s² 2p³",state:"Gas",melt:-210.1,boil:-195.8,density:"0.00125 g/L",disc:"1772",by:"Rutherford",desc:"Makes up 78% of Earth's atmosphere. Essential for amino acids."},
-  {n:8,sym:"O",name:"Oxygen",mass:15.999,cat:"nonmetal",group:16,period:2,config:"[He] 2s² 2p⁴",state:"Gas",melt:-218.8,boil:-183,density:"0.00143 g/L",disc:"1774",by:"Scheele & Priestley",desc:"Essential for respiration. Most abundant element in Earth's crust."},
-  {n:9,sym:"F",name:"Fluorine",mass:18.998,cat:"nonmetal",group:17,period:2,config:"[He] 2s² 2p⁵",state:"Gas",melt:-219.7,boil:-188.1,density:"0.0017 g/L",disc:"1886",by:"Moissan",desc:"Most electronegative element. Extremely reactive pale yellow gas."},
-  {n:10,sym:"Ne",name:"Neon",mass:20.18,cat:"noble",group:18,period:2,config:"[He] 2s² 2p⁶",state:"Gas",melt:-248.6,boil:-246,density:"0.0009 g/L",disc:"1898",by:"Ramsay & Travers",desc:"Noble gas famous for its red-orange glow in neon signs."},
-  {n:11,sym:"Na",name:"Sodium",mass:22.99,cat:"alkali",group:1,period:3,config:"[Ne] 3s¹",state:"Solid",melt:97.8,boil:882.9,density:"0.971 g/cm³",disc:"1807",by:"Davy",desc:"Soft reactive metal. Essential for nerve transmission."},
-  {n:12,sym:"Mg",name:"Magnesium",mass:24.305,cat:"alkaline",group:2,period:3,config:"[Ne] 3s²",state:"Solid",melt:650,boil:1090,density:"1.74 g/cm³",disc:"1808",by:"Davy",desc:"Lightweight structural metal. Central atom in chlorophyll."},
-  {n:13,sym:"Al",name:"Aluminium",mass:26.982,cat:"post",group:13,period:3,config:"[Ne] 3s² 3p¹",state:"Solid",melt:660.3,boil:2519,density:"2.70 g/cm³",disc:"1825",by:"Ørsted",desc:"Most abundant metal in Earth's crust. Lightweight, corrosion-resistant."},
-  {n:14,sym:"Si",name:"Silicon",mass:28.085,cat:"metalloid",group:14,period:3,config:"[Ne] 3s² 3p²",state:"Solid",melt:1414,boil:3265,density:"2.329 g/cm³",disc:"1824",by:"Berzelius",desc:"Backbone of modern electronics. Second most abundant element in crust."},
-  {n:15,sym:"P",name:"Phosphorus",mass:30.974,cat:"nonmetal",group:15,period:3,config:"[Ne] 3s² 3p³",state:"Solid",melt:44.15,boil:280.5,density:"1.82 g/cm³",disc:"1669",by:"Brand",desc:"Essential for DNA, RNA, and ATP. Key nutrient in fertilizers."},
-  {n:16,sym:"S",name:"Sulfur",mass:32.06,cat:"nonmetal",group:16,period:3,config:"[Ne] 3s² 3p⁴",state:"Solid",melt:115.2,boil:444.6,density:"2.067 g/cm³",disc:"Ancient",by:"Ancients",desc:"Yellow solid. Key to proteins and sulfuric acid production."},
-  {n:17,sym:"Cl",name:"Chlorine",mass:35.45,cat:"nonmetal",group:17,period:3,config:"[Ne] 3s² 3p⁵",state:"Gas",melt:-101.5,boil:-34.04,density:"0.00321 g/L",disc:"1774",by:"Scheele",desc:"Used in water purification, PVC production, and as a disinfectant."},
-  {n:18,sym:"Ar",name:"Argon",mass:39.948,cat:"noble",group:18,period:3,config:"[Ne] 3s² 3p⁶",state:"Gas",melt:-189.4,boil:-185.9,density:"0.00178 g/L",disc:"1894",by:"Rayleigh & Ramsay",desc:"Third most abundant gas in atmosphere. Used in welding."},
-  {n:19,sym:"K",name:"Potassium",mass:39.098,cat:"alkali",group:1,period:4,config:"[Ar] 4s¹",state:"Solid",melt:63.4,boil:759,density:"0.862 g/cm³",disc:"1807",by:"Davy",desc:"Essential for plant growth and nerve function. Burns with violet flame."},
-  {n:20,sym:"Ca",name:"Calcium",mass:40.078,cat:"alkaline",group:2,period:4,config:"[Ar] 4s²",state:"Solid",melt:842,boil:1484,density:"1.54 g/cm³",disc:"1808",by:"Davy",desc:"Essential for bones, teeth, and cell signaling."},
-  {n:21,sym:"Sc",name:"Scandium",mass:44.956,cat:"transition",group:3,period:4,config:"[Ar] 3d¹ 4s²",state:"Solid",melt:1541,boil:2836,density:"2.985 g/cm³",disc:"1879",by:"Nilson",desc:"Rare light transition metal used in aircraft and sporting equipment."},
-  {n:22,sym:"Ti",name:"Titanium",mass:47.867,cat:"transition",group:4,period:4,config:"[Ar] 3d² 4s²",state:"Solid",melt:1668,boil:3287,density:"4.506 g/cm³",disc:"1791",by:"Gregor",desc:"Strong, lightweight metal used in aircraft and medical implants."},
-  {n:23,sym:"V",name:"Vanadium",mass:50.942,cat:"transition",group:5,period:4,config:"[Ar] 3d³ 4s²",state:"Solid",melt:1910,boil:3407,density:"6.11 g/cm³",disc:"1801",by:"del Río",desc:"Used in steel alloys and vanadium redox flow batteries."},
-  {n:24,sym:"Cr",name:"Chromium",mass:51.996,cat:"transition",group:6,period:4,config:"[Ar] 3d⁵ 4s¹",state:"Solid",melt:1907,boil:2671,density:"7.15 g/cm³",disc:"1797",by:"Vauquelin",desc:"Hard, lustrous metal giving stainless steel its corrosion resistance."},
-  {n:25,sym:"Mn",name:"Manganese",mass:54.938,cat:"transition",group:7,period:4,config:"[Ar] 3d⁵ 4s²",state:"Solid",melt:1246,boil:2061,density:"7.21 g/cm³",disc:"1774",by:"Gahn",desc:"Essential in steel production and batteries."},
-  {n:26,sym:"Fe",name:"Iron",mass:55.845,cat:"transition",group:8,period:4,config:"[Ar] 3d⁶ 4s²",state:"Solid",melt:1538,boil:2861,density:"7.874 g/cm³",disc:"Ancient",by:"Ancients",desc:"Most used metal. Earth's core is largely iron-nickel."},
-  {n:27,sym:"Co",name:"Cobalt",mass:58.933,cat:"transition",group:9,period:4,config:"[Ar] 3d⁷ 4s²",state:"Solid",melt:1495,boil:2927,density:"8.9 g/cm³",disc:"1735",by:"Brandt",desc:"Used in superalloys, permanent magnets, and lithium batteries."},
-  {n:28,sym:"Ni",name:"Nickel",mass:58.693,cat:"transition",group:10,period:4,config:"[Ar] 3d⁸ 4s²",state:"Solid",melt:1455,boil:2730,density:"8.908 g/cm³",disc:"1751",by:"Cronstedt",desc:"Used in stainless steel, coins, and rechargeable batteries."},
-  {n:29,sym:"Cu",name:"Copper",mass:63.546,cat:"transition",group:11,period:4,config:"[Ar] 3d¹⁰ 4s¹",state:"Solid",melt:1084.6,boil:2562,density:"8.96 g/cm³",disc:"Ancient",by:"Ancients",desc:"Excellent electrical conductor. Essential for wiring."},
-  {n:30,sym:"Zn",name:"Zinc",mass:65.38,cat:"transition",group:12,period:4,config:"[Ar] 3d¹⁰ 4s²",state:"Solid",melt:419.5,boil:907,density:"7.134 g/cm³",disc:"1746",by:"Marggraf",desc:"Used for galvanizing steel and as a dietary supplement."},
-  {n:31,sym:"Ga",name:"Gallium",mass:69.723,cat:"post",group:13,period:4,config:"[Ar] 3d¹⁰ 4s² 4p¹",state:"Solid",melt:29.76,boil:2204,density:"5.91 g/cm³",disc:"1875",by:"Lecoq de Boisbaudran",desc:"Melts at 30°C. Used in semiconductors and LEDs."},
-  {n:32,sym:"Ge",name:"Germanium",mass:72.63,cat:"metalloid",group:14,period:4,config:"[Ar] 3d¹⁰ 4s² 4p²",state:"Solid",melt:938.3,boil:2833,density:"5.323 g/cm³",disc:"1886",by:"Winkler",desc:"Key semiconductor for transistors and infrared optics."},
-  {n:33,sym:"As",name:"Arsenic",mass:74.922,cat:"metalloid",group:15,period:4,config:"[Ar] 3d¹⁰ 4s² 4p³",state:"Solid",melt:816,boil:614,density:"5.727 g/cm³",disc:"Ancient",by:"Magnus",desc:"Toxic metalloid used historically as poison, now in semiconductors."},
-  {n:34,sym:"Se",name:"Selenium",mass:78.971,cat:"nonmetal",group:16,period:4,config:"[Ar] 3d¹⁰ 4s² 4p⁴",state:"Solid",melt:220.8,boil:685,density:"4.809 g/cm³",disc:"1817",by:"Berzelius",desc:"Photoconductive element used in solar panels."},
-  {n:35,sym:"Br",name:"Bromine",mass:79.904,cat:"nonmetal",group:17,period:4,config:"[Ar] 3d¹⁰ 4s² 4p⁵",state:"Liquid",melt:-7.2,boil:58.8,density:"3.1 g/cm³",disc:"1826",by:"Balard",desc:"One of only two liquid elements at room temperature."},
-  {n:36,sym:"Kr",name:"Krypton",mass:83.798,cat:"noble",group:18,period:4,config:"[Ar] 3d¹⁰ 4s² 4p⁶",state:"Gas",melt:-157.4,boil:-153.2,density:"0.00373 g/L",disc:"1898",by:"Ramsay & Travers",desc:"Noble gas used in high-performance lasers."},
-  {n:37,sym:"Rb",name:"Rubidium",mass:85.468,cat:"alkali",group:1,period:5,config:"[Kr] 5s¹",state:"Solid",melt:39.31,boil:688,density:"1.532 g/cm³",disc:"1861",by:"Bunsen & Kirchhoff",desc:"Soft, reactive alkali metal used in atomic clocks."},
-  {n:38,sym:"Sr",name:"Strontium",mass:87.62,cat:"alkaline",group:2,period:5,config:"[Kr] 5s²",state:"Solid",melt:777,boil:1382,density:"2.64 g/cm³",disc:"1790",by:"Crawford",desc:"Produces brilliant red color in fireworks."},
-  {n:39,sym:"Y",name:"Yttrium",mass:88.906,cat:"transition",group:3,period:5,config:"[Kr] 4d¹ 5s²",state:"Solid",melt:1526,boil:3336,density:"4.469 g/cm³",disc:"1794",by:"Gadolin",desc:"Used in LEDs, camera lenses, and laser crystals."},
-  {n:40,sym:"Zr",name:"Zirconium",mass:91.224,cat:"transition",group:4,period:5,config:"[Kr] 4d² 5s²",state:"Solid",melt:1855,boil:4409,density:"6.506 g/cm³",disc:"1789",by:"Klaproth",desc:"Corrosion-resistant metal used in nuclear reactor cladding."},
-  {n:41,sym:"Nb",name:"Niobium",mass:92.906,cat:"transition",group:5,period:5,config:"[Kr] 4d⁴ 5s¹",state:"Solid",melt:2477,boil:4744,density:"8.57 g/cm³",disc:"1801",by:"Hatchett",desc:"Used in superconducting MRI magnets."},
-  {n:42,sym:"Mo",name:"Molybdenum",mass:95.95,cat:"transition",group:6,period:5,config:"[Kr] 4d⁵ 5s¹",state:"Solid",melt:2623,boil:4639,density:"10.22 g/cm³",disc:"1781",by:"Scheele",desc:"High melting point. Used in high-strength steel."},
-  {n:43,sym:"Tc",name:"Technetium",mass:98,cat:"transition",group:7,period:5,config:"[Kr] 4d⁵ 5s²",state:"Solid",melt:2157,boil:4265,density:"11 g/cm³",disc:"1937",by:"Perrier & Segrè",desc:"First artificially produced element. Used in medical imaging."},
-  {n:44,sym:"Ru",name:"Ruthenium",mass:101.07,cat:"transition",group:8,period:5,config:"[Kr] 4d⁷ 5s¹",state:"Solid",melt:2334,boil:4150,density:"12.37 g/cm³",disc:"1844",by:"Klaus",desc:"Platinum group metal. Excellent catalyst."},
-  {n:45,sym:"Rh",name:"Rhodium",mass:102.906,cat:"transition",group:9,period:5,config:"[Kr] 4d⁸ 5s¹",state:"Solid",melt:1964,boil:3695,density:"12.41 g/cm³",disc:"1803",by:"Wollaston",desc:"Extremely rare and precious. Used in catalytic converters."},
-  {n:46,sym:"Pd",name:"Palladium",mass:106.42,cat:"transition",group:10,period:5,config:"[Kr] 4d¹⁰",state:"Solid",melt:1554.9,boil:2963,density:"12.023 g/cm³",disc:"1803",by:"Wollaston",desc:"Precious metal used in catalytic converters and electronics."},
-  {n:47,sym:"Ag",name:"Silver",mass:107.868,cat:"transition",group:11,period:5,config:"[Kr] 4d¹⁰ 5s¹",state:"Solid",melt:961.8,boil:2162,density:"10.49 g/cm³",disc:"Ancient",by:"Ancients",desc:"Best electrical conductor. Antimicrobial. Used in jewelry and electronics."},
-  {n:48,sym:"Cd",name:"Cadmium",mass:112.414,cat:"transition",group:12,period:5,config:"[Kr] 4d¹⁰ 5s²",state:"Solid",melt:321.1,boil:767,density:"8.65 g/cm³",disc:"1817",by:"Stromeyer",desc:"Used in batteries and semiconductor nanoparticles."},
-  {n:49,sym:"In",name:"Indium",mass:114.818,cat:"post",group:13,period:5,config:"[Kr] 4d¹⁰ 5s² 5p¹",state:"Solid",melt:156.6,boil:2072,density:"7.31 g/cm³",disc:"1863",by:"Reich & Richter",desc:"Used in LCD screens and touchscreens as ITO."},
-  {n:50,sym:"Sn",name:"Tin",mass:118.71,cat:"post",group:14,period:5,config:"[Kr] 4d¹⁰ 5s² 5p²",state:"Solid",melt:231.9,boil:2602,density:"7.287 g/cm³",disc:"Ancient",by:"Ancients",desc:"Used in bronze, solder, and food-grade coatings."},
-  {n:51,sym:"Sb",name:"Antimony",mass:121.76,cat:"metalloid",group:15,period:5,config:"[Kr] 4d¹⁰ 5s² 5p³",state:"Solid",melt:630.6,boil:1587,density:"6.697 g/cm³",disc:"Ancient",by:"Ancients",desc:"Used in flame retardants and semiconductor devices."},
-  {n:52,sym:"Te",name:"Tellurium",mass:127.6,cat:"metalloid",group:16,period:5,config:"[Kr] 4d¹⁰ 5s² 5p⁴",state:"Solid",melt:449.5,boil:988,density:"6.24 g/cm³",disc:"1782",by:"Müller von Reichenstein",desc:"Used in solar panels and thermoelectric devices."},
-  {n:53,sym:"I",name:"Iodine",mass:126.904,cat:"nonmetal",group:17,period:5,config:"[Kr] 4d¹⁰ 5s² 5p⁵",state:"Solid",melt:113.7,boil:184.3,density:"4.933 g/cm³",disc:"1811",by:"Courtois",desc:"Essential trace element. Used in thyroid health and disinfectants."},
-  {n:54,sym:"Xe",name:"Xenon",mass:131.293,cat:"noble",group:18,period:5,config:"[Kr] 4d¹⁰ 5s² 5p⁶",state:"Gas",melt:-111.8,boil:-108.1,density:"0.00589 g/L",disc:"1898",by:"Ramsay & Travers",desc:"Noble gas used in flash lamps and ion propulsion."},
-  {n:55,sym:"Cs",name:"Caesium",mass:132.905,cat:"alkali",group:1,period:6,config:"[Xe] 6s¹",state:"Solid",melt:28.5,boil:671,density:"1.873 g/cm³",disc:"1860",by:"Bunsen & Kirchhoff",desc:"Used in atomic clocks and photoelectric cells."},
-  {n:56,sym:"Ba",name:"Barium",mass:137.327,cat:"alkaline",group:2,period:6,config:"[Xe] 6s²",state:"Solid",melt:727,boil:1897,density:"3.62 g/cm³",disc:"1808",by:"Davy",desc:"Used in medical imaging (barium sulfate) and fireworks."},
-  {n:57,sym:"La",name:"Lanthanum",mass:138.905,cat:"lanthanide",group:null,period:6,config:"[Xe] 5d¹ 6s²",state:"Solid",melt:920,boil:3464,density:"6.145 g/cm³",disc:"1839",by:"Mosander",desc:"First lanthanide. Used in camera lenses and hybrid batteries."},
-  {n:58,sym:"Ce",name:"Cerium",mass:140.116,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹ 5d¹ 6s²",state:"Solid",melt:795,boil:3443,density:"6.77 g/cm³",disc:"1803",by:"Hisinger",desc:"Most abundant rare earth. Used in catalytic converters."},
-  {n:59,sym:"Pr",name:"Praseodymium",mass:140.908,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f³ 6s²",state:"Solid",melt:931,boil:3520,density:"6.773 g/cm³",disc:"1885",by:"von Welsbach",desc:"Used in powerful magnets and aircraft engines."},
-  {n:60,sym:"Nd",name:"Neodymium",mass:144.242,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁴ 6s²",state:"Solid",melt:1016,boil:3074,density:"7.007 g/cm³",disc:"1885",by:"von Welsbach",desc:"Used in the strongest permanent magnets (Nd₂Fe₁₄B)."},
-  {n:61,sym:"Pm",name:"Promethium",mass:145,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁵ 6s²",state:"Solid",melt:1042,boil:3000,density:"7.26 g/cm³",disc:"1945",by:"Marinsky",desc:"Radioactive lanthanide. No stable isotopes. Used in pacemakers."},
-  {n:62,sym:"Sm",name:"Samarium",mass:150.36,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁶ 6s²",state:"Solid",melt:1072,boil:1794,density:"7.52 g/cm³",disc:"1879",by:"Lecoq de Boisbaudran",desc:"Used in samarium-cobalt magnets and cancer treatment."},
-  {n:63,sym:"Eu",name:"Europium",mass:151.964,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁷ 6s²",state:"Solid",melt:826,boil:1529,density:"5.243 g/cm³",disc:"1901",by:"Demarçay",desc:"Produces red and blue phosphors in TV screens."},
-  {n:64,sym:"Gd",name:"Gadolinium",mass:157.25,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁷ 5d¹ 6s²",state:"Solid",melt:1312,boil:3273,density:"7.895 g/cm³",disc:"1880",by:"Marignac",desc:"Used as MRI contrast agent due to magnetic properties."},
-  {n:65,sym:"Tb",name:"Terbium",mass:158.925,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f⁹ 6s²",state:"Solid",melt:1356,boil:3230,density:"8.229 g/cm³",disc:"1843",by:"Mosander",desc:"Used in green phosphors and solid-state devices."},
-  {n:66,sym:"Dy",name:"Dysprosium",mass:162.5,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹⁰ 6s²",state:"Solid",melt:1412,boil:2567,density:"8.55 g/cm³",disc:"1886",by:"Lecoq de Boisbaudran",desc:"Critical for neodymium magnets in electric vehicles."},
-  {n:67,sym:"Ho",name:"Holmium",mass:164.93,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹¹ 6s²",state:"Solid",melt:1474,boil:2700,density:"8.795 g/cm³",disc:"1878",by:"Cleve",desc:"Highest magnetic moment. Used in nuclear reactors."},
-  {n:68,sym:"Er",name:"Erbium",mass:167.259,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹² 6s²",state:"Solid",melt:1529,boil:2868,density:"9.066 g/cm³",disc:"1843",by:"Mosander",desc:"Used in fiber optic amplifiers and laser surgery."},
-  {n:69,sym:"Tm",name:"Thulium",mass:168.934,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹³ 6s²",state:"Solid",melt:1545,boil:1950,density:"9.321 g/cm³",disc:"1879",by:"Cleve",desc:"Rarest lanthanide. Used in portable X-ray devices."},
-  {n:70,sym:"Yb",name:"Ytterbium",mass:173.045,cat:"lanthanide",group:null,period:6,config:"[Xe] 4f¹⁴ 6s²",state:"Solid",melt:819,boil:1196,density:"6.965 g/cm³",disc:"1878",by:"Marignac",desc:"Used in optical fibers and atomic clocks."},
-  {n:71,sym:"Lu",name:"Lutetium",mass:174.967,cat:"lanthanide",group:3,period:6,config:"[Xe] 4f¹⁴ 5d¹ 6s²",state:"Solid",melt:1652,boil:3402,density:"9.84 g/cm³",disc:"1907",by:"Urbain",desc:"Densest lanthanide. Used in PET scan detectors."},
-  {n:72,sym:"Hf",name:"Hafnium",mass:178.49,cat:"transition",group:4,period:6,config:"[Xe] 4f¹⁴ 5d² 6s²",state:"Solid",melt:2233,boil:4603,density:"13.31 g/cm³",disc:"1923",by:"Coster & Hevesy",desc:"Used in nuclear control rods and microchip gate dielectrics."},
-  {n:73,sym:"Ta",name:"Tantalum",mass:180.948,cat:"transition",group:5,period:6,config:"[Xe] 4f¹⁴ 5d³ 6s²",state:"Solid",melt:3017,boil:5458,density:"16.654 g/cm³",disc:"1802",by:"Ekeberg",desc:"Extremely corrosion-resistant. Used in electronics capacitors."},
-  {n:74,sym:"W",name:"Tungsten",mass:183.84,cat:"transition",group:6,period:6,config:"[Xe] 4f¹⁴ 5d⁴ 6s²",state:"Solid",melt:3422,boil:5555,density:"19.25 g/cm³",disc:"1783",by:"J & F de Elhuyar",desc:"Highest melting point of all elements. Used in light bulb filaments."},
-  {n:75,sym:"Re",name:"Rhenium",mass:186.207,cat:"transition",group:7,period:6,config:"[Xe] 4f¹⁴ 5d⁵ 6s²",state:"Solid",melt:3186,boil:5596,density:"21.02 g/cm³",disc:"1925",by:"Noddack",desc:"Very high melting point. Used in jet engine alloys."},
-  {n:76,sym:"Os",name:"Osmium",mass:190.23,cat:"transition",group:8,period:6,config:"[Xe] 4f¹⁴ 5d⁶ 6s²",state:"Solid",melt:3033,boil:5012,density:"22.59 g/cm³",disc:"1803",by:"Tennant",desc:"Densest naturally occurring element."},
-  {n:77,sym:"Ir",name:"Iridium",mass:192.217,cat:"transition",group:9,period:6,config:"[Xe] 4f¹⁴ 5d⁷ 6s²",state:"Solid",melt:2446,boil:4428,density:"22.56 g/cm³",disc:"1803",by:"Tennant",desc:"Most corrosion-resistant metal. Used in spark plugs."},
-  {n:78,sym:"Pt",name:"Platinum",mass:195.084,cat:"transition",group:10,period:6,config:"[Xe] 4f¹⁴ 5d⁹ 6s¹",state:"Solid",melt:1768.3,boil:3825,density:"21.45 g/cm³",disc:"1735",by:"Ulloa",desc:"Precious metal used in catalysts and jewelry."},
-  {n:79,sym:"Au",name:"Gold",mass:196.967,cat:"transition",group:11,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s¹",state:"Solid",melt:1064.2,boil:2856,density:"19.3 g/cm³",disc:"Ancient",by:"Ancients",desc:"Highly valued precious metal. Excellent conductor, unreactive."},
-  {n:80,sym:"Hg",name:"Mercury",mass:200.592,cat:"transition",group:12,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s²",state:"Liquid",melt:-38.8,boil:356.7,density:"13.534 g/cm³",disc:"Ancient",by:"Ancients",desc:"Only metal liquid at room temperature. Used in thermometers."},
-  {n:81,sym:"Tl",name:"Thallium",mass:204.38,cat:"post",group:13,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p¹",state:"Solid",melt:304,boil:1473,density:"11.85 g/cm³",disc:"1861",by:"Crookes",desc:"Toxic heavy metal used in electronics and medicine."},
-  {n:82,sym:"Pb",name:"Lead",mass:207.2,cat:"post",group:14,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p²",state:"Solid",melt:327.5,boil:1749,density:"11.34 g/cm³",disc:"Ancient",by:"Ancients",desc:"Dense, soft metal. Used in batteries, radiation shielding."},
-  {n:83,sym:"Bi",name:"Bismuth",mass:208.98,cat:"post",group:15,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p³",state:"Solid",melt:271.5,boil:1564,density:"9.807 g/cm³",disc:"Ancient",by:"Ancients",desc:"Heaviest stable element. Used in medicines and alloys."},
-  {n:84,sym:"Po",name:"Polonium",mass:209,cat:"metalloid",group:16,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁴",state:"Solid",melt:254,boil:962,density:"9.32 g/cm³",disc:"1898",by:"Curie",desc:"Highly radioactive. Discovered by Marie Curie."},
-  {n:85,sym:"At",name:"Astatine",mass:210,cat:"nonmetal",group:17,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁵",state:"Solid",melt:302,boil:337,density:"7 g/cm³",disc:"1940",by:"Corson",desc:"Rarest naturally occurring element. Radioactive halogen."},
-  {n:86,sym:"Rn",name:"Radon",mass:222,cat:"noble",group:18,period:6,config:"[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁶",state:"Gas",melt:-71,boil:-61.7,density:"0.00973 g/L",disc:"1900",by:"Dorn",desc:"Radioactive noble gas. Causes lung cancer in high concentrations."},
-  {n:87,sym:"Fr",name:"Francium",mass:223,cat:"alkali",group:1,period:7,config:"[Rn] 7s¹",state:"Solid",melt:27,boil:677,density:"1.87 g/cm³",disc:"1939",by:"Perey",desc:"Most unstable naturally occurring element. Highly radioactive alkali metal."},
-  {n:88,sym:"Ra",name:"Radium",mass:226,cat:"alkaline",group:2,period:7,config:"[Rn] 7s²",state:"Solid",melt:700,boil:1737,density:"5 g/cm³",disc:"1898",by:"Curie",desc:"Radioactive alkaline earth metal. Used historically in luminous paints."},
-  {n:89,sym:"Ac",name:"Actinium",mass:227,cat:"actinide",group:null,period:7,config:"[Rn] 6d¹ 7s²",state:"Solid",melt:1050,boil:3198,density:"10 g/cm³",disc:"1899",by:"Debierne",desc:"First actinide. Highly radioactive silvery-white metal."},
-  {n:90,sym:"Th",name:"Thorium",mass:232.038,cat:"actinide",group:null,period:7,config:"[Rn] 6d² 7s²",state:"Solid",melt:1750,boil:4788,density:"11.7 g/cm³",disc:"1828",by:"Berzelius",desc:"Radioactive metal. Potential thorium-cycle nuclear fuel."},
-  {n:91,sym:"Pa",name:"Protactinium",mass:231.036,cat:"actinide",group:null,period:7,config:"[Rn] 5f² 6d¹ 7s²",state:"Solid",melt:1568,boil:4027,density:"15.37 g/cm³",disc:"1913",by:"Fajans & Göhring",desc:"Rare, toxic, radioactive actinide. Intermediate in uranium decay."},
-  {n:92,sym:"U",name:"Uranium",mass:238.029,cat:"actinide",group:null,period:7,config:"[Rn] 5f³ 6d¹ 7s²",state:"Solid",melt:1135,boil:4131,density:"19.1 g/cm³",disc:"1789",by:"Klaproth",desc:"Used as nuclear fuel. Heaviest naturally occurring element."},
-  {n:93,sym:"Np",name:"Neptunium",mass:237,cat:"actinide",group:null,period:7,config:"[Rn] 5f⁴ 6d¹ 7s²",state:"Solid",melt:644,boil:4000,density:"20.2 g/cm³",disc:"1940",by:"McMillan & Abelson",desc:"First transuranic element. Produced in nuclear reactors."},
-  {n:94,sym:"Pu",name:"Plutonium",mass:244,cat:"actinide",group:null,period:7,config:"[Rn] 5f⁶ 7s²",state:"Solid",melt:639.4,boil:3228,density:"19.816 g/cm³",disc:"1940",by:"Seaborg",desc:"Used in nuclear weapons and as reactor fuel."},
-  {n:95,sym:"Am",name:"Americium",mass:243,cat:"actinide",group:null,period:7,config:"[Rn] 5f⁷ 7s²",state:"Solid",melt:1176,boil:2011,density:"13.67 g/cm³",disc:"1944",by:"Seaborg",desc:"Used in smoke detectors. Produced in nuclear reactors."},
-  {n:96,sym:"Cm",name:"Curium",mass:247,cat:"actinide",group:null,period:7,config:"[Rn] 5f⁷ 6d¹ 7s²",state:"Solid",melt:1345,boil:3110,density:"13.51 g/cm³",disc:"1944",by:"Seaborg & Ghiorso",desc:"Named after Marie and Pierre Curie. Used in space probes."},
-  {n:97,sym:"Bk",name:"Berkelium",mass:247,cat:"actinide",group:null,period:7,config:"[Rn] 5f⁹ 7s²",state:"Solid",melt:986,boil:null,density:"14.78 g/cm³",disc:"1949",by:"Seaborg",desc:"Named after Berkeley, California. Synthetic radioactive actinide."},
-  {n:98,sym:"Cf",name:"Californium",mass:251,cat:"actinide",group:null,period:7,config:"[Rn] 5f¹⁰ 7s²",state:"Solid",melt:900,boil:null,density:"15.1 g/cm³",disc:"1950",by:"Seaborg",desc:"Used in neutron moisture gauges and cancer treatment."},
-  {n:99,sym:"Es",name:"Einsteinium",mass:252,cat:"actinide",group:null,period:7,config:"[Rn] 5f¹¹ 7s²",state:"Solid",melt:860,boil:null,density:"8.84 g/cm³",disc:"1952",by:"Ghiorso",desc:"Named after Albert Einstein. Discovered in thermonuclear bomb debris."},
-  {n:100,sym:"Fm",name:"Fermium",mass:257,cat:"actinide",group:null,period:7,config:"[Rn] 5f¹² 7s²",state:"Solid",melt:1527,boil:null,density:null,disc:"1952",by:"Ghiorso",desc:"Named after Enrico Fermi. Only exists in microgram quantities."},
-  {n:101,sym:"Md",name:"Mendelevium",mass:258,cat:"actinide",group:null,period:7,config:"[Rn] 5f¹³ 7s²",state:"Solid",melt:827,boil:null,density:null,disc:"1955",by:"Seaborg & Ghiorso",desc:"Named after Dmitri Mendeleev. Synthetic radioactive actinide."},
-  {n:102,sym:"No",name:"Nobelium",mass:259,cat:"actinide",group:null,period:7,config:"[Rn] 5f¹⁴ 7s²",state:"Solid",melt:827,boil:null,density:null,disc:"1958",by:"Seaborg",desc:"Named after Alfred Nobel. Very short-lived synthetic element."},
-  {n:103,sym:"Lr",name:"Lawrencium",mass:262,cat:"actinide",group:3,period:7,config:"[Rn] 5f¹⁴ 7s² 7p¹",state:"Solid",melt:1627,boil:null,density:null,disc:"1961",by:"Ghiorso",desc:"Named after Ernest Lawrence. Last actinide element."},
-  {n:104,sym:"Rf",name:"Rutherfordium",mass:267,cat:"transition",group:4,period:7,config:"[Rn] 5f¹⁴ 6d² 7s²",state:"Solid",melt:2100,boil:5500,density:"23.2 g/cm³",disc:"1964",by:"JINR/LBNL",desc:"Named after Ernest Rutherford. First transactinide element."},
-  {n:105,sym:"Db",name:"Dubnium",mass:268,cat:"transition",group:5,period:7,config:"[Rn] 5f¹⁴ 6d³ 7s²",state:"Solid",melt:null,boil:null,density:"29.3 g/cm³",disc:"1968",by:"JINR",desc:"Named after Dubna, Russia. Radioactive synthetic element."},
-  {n:106,sym:"Sg",name:"Seaborgium",mass:271,cat:"transition",group:6,period:7,config:"[Rn] 5f¹⁴ 6d⁴ 7s²",state:"Solid",melt:null,boil:null,density:"35 g/cm³",disc:"1974",by:"Ghiorso",desc:"Named after Glenn Seaborg. Short-lived synthetic element."},
-  {n:107,sym:"Bh",name:"Bohrium",mass:270,cat:"transition",group:7,period:7,config:"[Rn] 5f¹⁴ 6d⁵ 7s²",state:"Solid",melt:null,boil:null,density:"37.1 g/cm³",disc:"1981",by:"GSI",desc:"Named after Niels Bohr. Extremely radioactive synthetic element."},
-  {n:108,sym:"Hs",name:"Hassium",mass:277,cat:"transition",group:8,period:7,config:"[Rn] 5f¹⁴ 6d⁶ 7s²",state:"Solid",melt:null,boil:null,density:"40.7 g/cm³",disc:"1984",by:"GSI",desc:"Named after Hesse, Germany. Synthetic transactinide."},
-  {n:109,sym:"Mt",name:"Meitnerium",mass:278,cat:"transition",group:9,period:7,config:"[Rn] 5f¹⁴ 6d⁷ 7s²",state:"Solid",melt:null,boil:null,density:"37.4 g/cm³",disc:"1982",by:"GSI",desc:"Named after Lise Meitner. Synthetic radioactive element."},
-  {n:110,sym:"Ds",name:"Darmstadtium",mass:281,cat:"transition",group:10,period:7,config:"[Rn] 5f¹⁴ 6d⁸ 7s²",state:"Solid",melt:null,boil:null,density:"34.8 g/cm³",disc:"1994",by:"GSI",desc:"Named after Darmstadt, Germany. Extremely short-lived."},
-  {n:111,sym:"Rg",name:"Roentgenium",mass:282,cat:"transition",group:11,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s¹",state:"Solid",melt:null,boil:null,density:"28.7 g/cm³",disc:"1994",by:"GSI",desc:"Named after Wilhelm Röntgen. Highly radioactive."},
-  {n:112,sym:"Cn",name:"Copernicium",mass:285,cat:"transition",group:12,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s²",state:"Gas",melt:null,boil:null,density:"23.7 g/cm³",disc:"1996",by:"GSI",desc:"Named after Copernicus. Predicted to behave as a noble gas."},
-  {n:113,sym:"Nh",name:"Nihonium",mass:286,cat:"post",group:13,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p¹",state:"Solid",melt:null,boil:null,density:"16 g/cm³",disc:"2004",by:"RIKEN",desc:"Named after Japan (Nihon). First element discovered in Asia."},
-  {n:114,sym:"Fl",name:"Flerovium",mass:289,cat:"post",group:14,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p²",state:"Solid",melt:null,boil:null,density:"14 g/cm³",disc:"1998",by:"JINR",desc:"Named after Flerov Laboratory of Nuclear Reactions."},
-  {n:115,sym:"Mc",name:"Moscovium",mass:290,cat:"post",group:15,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p³",state:"Solid",melt:null,boil:null,density:"13.5 g/cm³",disc:"2003",by:"JINR",desc:"Named after Moscow Oblast. Synthetic superheavy element."},
-  {n:116,sym:"Lv",name:"Livermorium",mass:293,cat:"post",group:16,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁴",state:"Solid",melt:null,boil:null,density:"12.9 g/cm³",disc:"2000",by:"JINR/LLNL",desc:"Named after Lawrence Livermore National Laboratory."},
-  {n:117,sym:"Ts",name:"Tennessine",mass:294,cat:"nonmetal",group:17,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁵",state:"Solid",melt:null,boil:null,density:"7.2 g/cm³",disc:"2010",by:"JINR/ORNL",desc:"Named after Tennessee. Second heaviest confirmed element."},
-  {n:118,sym:"Og",name:"Oganesson",mass:294,cat:"noble",group:18,period:7,config:"[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁶",state:"Gas",melt:null,boil:null,density:"5 g/cm³",disc:"2002",by:"JINR",desc:"Heaviest known element. Named after Yuri Oganessian."}
-];
-
-const MM={H:1.008,He:4.003,Li:6.94,Be:9.012,B:10.81,C:12.011,N:14.007,O:15.999,F:18.998,Ne:20.18,Na:22.99,Mg:24.305,Al:26.982,Si:28.085,P:30.974,S:32.06,Cl:35.45,Ar:39.948,K:39.098,Ca:40.078,Fe:55.845,Cu:63.546,Zn:65.38,Ag:107.868,Au:196.967,Hg:200.592,Pb:207.2,Sn:118.71,Mn:54.938,Cr:51.996,Co:58.933,Ni:58.693,Mo:95.95,Br:79.904,I:126.904,Ba:137.327,Sr:87.62};
-
-/* ══════════════════════════════════
-   PERIODIC TABLE (kept from original)
-══════════════════════════════════ */
-const CATS={alkali:'Alkali Metal',alkaline:'Alkaline Earth',transition:'Transition Metal',post:'Post-Transition',metalloid:'Metalloid',nonmetal:'Nonmetal',noble:'Noble Gas',lanthanide:'Lanthanide',actinide:'Actinide',hydrogen:'Hydrogen'};
-const CAT_COLORS={alkali:'#ef4444',alkaline:'#f59e0b',transition:'#3b82f6',post:'#06b6d4',metalloid:'#22c55e',nonmetal:'#8b5cf6',noble:'#00d4ff',lanthanide:'#a855f7',actinide:'#f97316',hydrogen:'#14b8a6'};
-
-let ptBuilt=false,hlCat=null;
-
-const PT_LAYOUT=[
-  [1,1,1],[2,18,1],
-  [3,1,2],[4,2,2],[5,13,2],[6,14,2],[7,15,2],[8,16,2],[9,17,2],[10,18,2],
-  [11,1,3],[12,2,3],[13,13,3],[14,14,3],[15,15,3],[16,16,3],[17,17,3],[18,18,3],
-  [19,1,4],[20,2,4],[21,3,4],[22,4,4],[23,5,4],[24,6,4],[25,7,4],[26,8,4],[27,9,4],[28,10,4],[29,11,4],[30,12,4],[31,13,4],[32,14,4],[33,15,4],[34,16,4],[35,17,4],[36,18,4],
-  [37,1,5],[38,2,5],[39,3,5],[40,4,5],[41,5,5],[42,6,5],[43,7,5],[44,8,5],[45,9,5],[46,10,5],[47,11,5],[48,12,5],[49,13,5],[50,14,5],[51,15,5],[52,16,5],[53,17,5],[54,18,5],
-  [55,1,6],[56,2,6],[57,3,6],[72,4,6],[73,5,6],[74,6,6],[75,7,6],[76,8,6],[77,9,6],[78,10,6],[79,11,6],[80,12,6],[81,13,6],[82,14,6],[83,15,6],[84,16,6],[85,17,6],[86,18,6],
-  [87,1,7],[88,2,7],[89,3,7],[104,4,7],[105,5,7],[106,6,7],[107,7,7],[108,8,7],[109,9,7],[110,10,7],[111,11,7],[112,12,7],[113,13,7],[114,14,7],[115,15,7],[116,16,7],[117,17,7],[118,18,7],
-  [58,4,9],[59,5,9],[60,6,9],[61,7,9],[62,8,9],[63,9,9],[64,10,9],[65,11,9],[66,12,9],[67,13,9],[68,14,9],[69,15,9],[70,16,9],[71,17,9],
-  [90,4,10],[91,5,10],[92,6,10],[93,7,10],[94,8,10],[95,9,10],[96,10,10],[97,11,10],[98,12,10],[99,13,10],[100,14,10],[101,15,10],[102,16,10],[103,17,10]
-];
-
-function buildPT(){
-  if(ptBuilt) return;
-  ptBuilt=true;
-  const grid=document.getElementById('ptGrid');
-  const map={};
-  PT_LAYOUT.forEach(([an,col,row])=>{map[`${row}-${col}`]=EL[an-1];});
-  const html=[];
-  for(let r=1;r<=10;r++){
-    for(let c=1;c<=18;c++){
-      if(r===8){html.push('<div class="ec emp"></div>');continue;}
-      const el=map[`${r}-${c}`];
-      if(!el){
-        if(r===9&&c===3){html.push('<div class="ec lp" style="font-size:8px;padding:2px">57–71<br>Lanthan.</div>');continue;}
-        if(r===10&&c===3){html.push('<div class="ec ap" style="font-size:8px;padding:2px">89–103<br>Actinide</div>');continue;}
-        html.push('<div class="ec emp"></div>');
-      } else {
-        html.push(`<div class="ec cat-${el.cat}" onclick="showElement(${el.n-1})" data-cat="${el.cat}" data-group="${el.group||0}"><span class="an">${el.n}</span><span class="sy">${el.sym}</span><span class="en">${el.name.substring(0,6)}</span><span class="em">${el.mass>0?el.mass.toFixed(1):''}</span></div>`);
-      }
-    }
-  }
-  grid.style.gridTemplateColumns=`repeat(18,minmax(48px,1fr))`;
-  grid.style.gridTemplateRows=`repeat(10,minmax(48px,auto))`;
-  grid.innerHTML=html.join('');
-  const leg=document.getElementById('ptLegend');
-  leg.innerHTML=Object.entries(CATS).map(([k,v])=>`<div class="lg" onclick="toggleHighlight('${k}')" data-lgcat="${k}"><div class="ld" style="background:${CAT_COLORS[k]}"></div>${v}</div>`).join('');
-}
-
-function toggleHighlight(cat){
-  if(hlCat===cat){clearHighlight();return;}
-  hlCat=cat;
-  document.querySelectorAll('.ec:not(.emp):not(.lp):not(.ap)').forEach(cell=>{
-    if(cell.dataset.cat===cat){cell.classList.remove('dimmed');cell.classList.add('hl-elem');}
-    else{cell.classList.add('dimmed');cell.classList.remove('hl-elem');}
-  });
-  document.querySelectorAll('.lg').forEach(l=>{l.classList.toggle('hl-active',l.dataset.lgcat===cat)});
-  document.getElementById('hlName').textContent=CATS[cat]||cat;
-  document.getElementById('hlLabel').classList.add('show');
-  toast(`Showing ${CATS[cat]||cat}`,'chem');
-}
-function clearHighlight(){
-  hlCat=null;
-  document.querySelectorAll('.ec').forEach(c=>{c.classList.remove('dimmed','hl-elem');});
-  document.querySelectorAll('.lg').forEach(l=>l.classList.remove('hl-active'));
-  document.getElementById('hlLabel').classList.remove('show');
-}
-
-function showElement(idx){
-  const e=EL[idx];
-  const col=CAT_COLORS[e.cat]||'#4f8ef7';
-  const cn={alkali:'Alkali Metal',alkaline:'Alkaline Earth',transition:'Transition Metal',post:'Post-Transition',metalloid:'Metalloid',nonmetal:'Nonmetal',noble:'Noble Gas',lanthanide:'Lanthanide',actinide:'Actinide',hydrogen:'Hydrogen'};
-  document.getElementById('mcard').innerHTML=`
-    <div class="mhero">
-      <div class="msymbox cat-${e.cat}" style="min-width:76px"><span class="man">${e.n}</span><span class="msym">${e.sym}</span><span class="mmas">${e.mass} u</span></div>
-      <div><div class="mname">${e.name}</div><div class="msub">Period ${e.period} · Group ${e.group||'f-block'}</div><span class="mtag" style="background:${col}18;color:${col};border:1px solid ${col}30">${cn[e.cat]||'Unknown'}</span></div>
-    </div>
-    <div class="mbody">
-      <div class="mgrid">
-        <div class="mf"><div class="mfl">Atomic Mass</div><div class="mfv">${e.mass} u</div></div>
-        <div class="mf"><div class="mfl">State @ 25°C</div><div class="mfv">${e.state}</div></div>
-        <div class="mf"><div class="mfl">Melting Point</div><div class="mfv">${e.melt!=null?e.melt+' °C':'N/A'}</div></div>
-        <div class="mf"><div class="mfl">Boiling Point</div><div class="mfv">${e.boil!=null?e.boil+' °C':'N/A'}</div></div>
-        <div class="mf"><div class="mfl">Density</div><div class="mfv">${e.density||'N/A'}</div></div>
-        <div class="mf"><div class="mfl">Discovered</div><div class="mfv">${e.disc}</div><div class="mfs">${e.by}</div></div>
-      </div>
-      <div class="mf" style="margin-bottom:11px"><div class="mfl">Electron Configuration</div><div class="mfv econfig">${e.config}</div></div>
-      <div class="mdesc">${e.desc}</div>
-      <button class="mclose" onclick="closeModal()">✕ &nbsp;Close</button>
-    </div>`;
-  document.getElementById('modal').classList.add('on');
-}
-function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
-
-/* ══════════════════════════════════
-   ADVANCED AI SYSTEMS — Can solve complex physics problems like the ball throw question
-   Enhanced to handle any problem without inappropriate words
-══════════════════════════════════ */
-const AI_SYSTEMS={
-  chem:`You are an elite Chemistry professor with PhD-level expertise. You solve ANY chemistry problem from basic to advanced quantum chemistry.
-
-FORMATTING RULES:
-- NEVER use LaTeX commands like \frac, \boxed, \Longrightarrow. Use plain text with / for fractions.
-- NEVER include promotional text, ads, or "Powered by" footers.
-- Provide COMPLETE step-by-step solutions for all problems.
-- Use **bold** for key terms, formulas, and final answers.
-- For equations: write them clearly as text (e.g., "2H2 + O2 → 2H2O")
-- Handle: balancing equations, stoichiometry, thermodynamics, kinetics, quantum mechanics, organic synthesis, spectroscopy, and more.
-- If a problem is incomplete, ask for missing information.
-- Final answer must be clearly stated.`,
-
-  phys:`You are an elite Physics professor with PhD-level expertise. You solve ANY physics problem from basic kinematics to quantum field theory.
-
-CRITICAL: You MUST be able to solve complex problems like:
-"A ball is thrown vertically upward at the same instant that a second ball is dropped from rest directly above it. The two balls are d apart when they start their motion. Find the maximum speed at which the first ball can be thrown such that it doesn't collide with the second ball before it returns to its starting height."
-
-FORMATTING RULES:
-- NEVER use LaTeX commands. Use plain text with / for fractions, ^ for powers.
-- NEVER include promotional text, ads, or "Powered by" footers.
-- Provide COMPLETE step-by-step solutions with clear reasoning.
-- Use **bold** for key terms, formulas, and final answers.
-- For multi-step problems, number each step.
-- Include all relevant equations: v = u + at, s = ut + (1/2)at^2, v^2 = u^2 + 2as, etc.
-- Handle: mechanics, electromagnetism, thermodynamics, quantum mechanics, relativity, optics, acoustics, fluid dynamics, and more.
-- If a problem is incomplete, ask for missing information.
-- Final answer must be clearly stated with units.`,
-
-  math:`You are an elite Mathematics professor with PhD-level expertise. You solve ANY math problem from arithmetic to advanced pure mathematics.
-
-FORMATTING RULES:
-- NEVER use LaTeX commands. Use plain text: / for fractions, ^ for powers, sqrt() for roots.
-- NEVER include promotional text, ads, or "Powered by" footers.
-- Provide COMPLETE step-by-step solutions with clear reasoning.
-- Use **bold** for key terms, formulas, and final answers.
-- Handle: algebra, calculus, differential equations, linear algebra, geometry, topology, number theory, statistics, complex analysis, and more.
-- For equations: write them clearly (e.g., "x^2 + 5x + 6 = 0")
-- For integrals: "∫ x^2 dx = x^3/3 + C"
-- For derivatives: "d/dx (x^3) = 3x^2"
-- If a problem is incomplete, ask for missing information.
-- Final answer must be clearly stated.`
-};
-
-/* ══════════════════════════════════
-   AI API CALL — Enhanced for complex problems
-══════════════════════════════════ */
-async function callAI(subject, question){
-  const models=['openai','openai-large','mistral','llama'];
-  for(const model of models){
-    try{
-      const res=await fetch('https://text.pollinations.ai/openai',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          model,
-          messages:[
-            {role:'system',content:AI_SYSTEMS[subject]},
-            {role:'user',content:question}
-          ],
-          temperature:0.2,
-          max_tokens:2000
-        })
-      });
-      if(!res.ok) continue;
-      const d=await res.json();
-      let content=d.choices?.[0]?.message?.content||d.content||'';
-      if(content && content.length>5){
-        // Strip any promotional content
-        content=stripAds(content);
-        return content;
-      }
-    }catch(e){continue;}
-  }
-  throw new Error('Unable to reach AI. Please check your internet connection and try again.');
-}
-
-function stripAds(text){
-  text=text.replace(/---[\s\S]*?[Ss]upport\s+[Pp]ollinations[\s\S]*?---/g,'');
-  text=text.replace(/🌸[\s\S]*?🌸/g,'');
-  text=text.replace(/[Pp]owered by\s+Pollinations[^\n]*/g,'');
-  text=text.replace(/[Ss]upport our mission[\s\S]{0,300}$/,'');
-  text=text.replace(/[Ss]upport Pollinations[\s\S]{0,300}$/,'');
-  text=text.replace(/free text APIs[\s\S]{0,300}$/,'');
-  text=text.replace(/\n{3,}/g,'\n\n');
-  return text.trim();
-}
-
-function mdToHtml(t){
-  // First, handle LaTeX-style math if present (convert to plain text)
-  t = t.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1)/($2)');
-  t = t.replace(/\\sqrt\{([^}]+)\}/g, 'sqrt($1)');
-  t = t.replace(/\\int/g, '∫');
-  t = t.replace(/\\sum/g, '∑');
-  t = t.replace(/\\rightarrow|\\to/g, '→');
-  t = t.replace(/\\left|\\right/g, '');
-  t = t.replace(/\\\((.*?)\\\)/g, '$1');
-  t = t.replace(/\\\[(.*?)\\\]/g, '$1');
-  
-  // Convert markdown-style formatting
-  return t
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/`(.+?)`/g, '<code>$1</code>')
-    .replace(/^#{1,3}\s+(.+)$/gm, '<strong style="color:var(--acc);display:block;margin:10px 0 4px">$1</strong>')
-    .replace(/^\d+\.\s+(.+)$/gm, '<li style="margin-bottom:4px">$1</li>')
-    .replace(/^[-•]\s+(.+)$/gm, '<li style="margin-bottom:4px">$1</li>')
-    .replace(/(<li[\s\S]*?<\/li>\s*)+/g, m=>`<ul style="padding-left:18px;margin:8px 0">${m}</ul>`)
-    .replace(/\n\n+/g, '<br><br>')
-    .replace(/\n(?![<])/g, '<br>');
-}
-
-async function askAI(subject){
-  const inp=document.getElementById(subject+'-q');
-  const q=inp.value.trim();
-  if(!q) return;
-  inp.value='';inp.style.height='auto';
-  const think=document.getElementById(subject+'-think');
-  const ans=document.getElementById(subject+'-ans');
-  const err=document.getElementById(subject+'-err');
-  const sbtn=document.getElementById(subject+'-sbtn');
-  err.classList.remove('show');
-  ans.classList.remove('show');
-  think.classList.add('show');
-  sbtn.disabled=true;
-  sbtn.innerHTML=`<svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>...</span>`;
-  try{
-    const reply=await callAI(subject,q);
-    think.classList.remove('show');
-    document.getElementById(subject+'-acont').innerHTML=mdToHtml(reply);
-    ans.classList.add('show');
-    ans.scrollIntoView({behavior:'smooth',block:'nearest'});
-    toast('Solution ready!',subject);
-  }catch(e){
-    think.classList.remove('show');
-    document.getElementById(subject+'-emsg').textContent=e.message||'Connection error. Please check your network.';
-    err.classList.add('show');
-  }finally{
-    sbtn.disabled=false;
-    sbtn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span>Ask</span>`;
-  }
-}
-
-function copyAns(id){
-  const el=document.getElementById(id);
-  const text=el.innerText||el.textContent;
-  navigator.clipboard.writeText(text).then(()=>toast('Copied to clipboard!','chem')).catch(()=>{});
-}
-
-/* ══════ VOICE ══════ */
-let vRec=null,vTarget=null;
-function startVoice(inputId){
-  if(!('SpeechRecognition' in window||'webkitSpeechRecognition' in window)){toast('Voice not supported. Use Chrome/Edge.','math');return;}
-  vTarget=inputId;
-  const subj=inputId.split('-')[0];
-  const vbar=document.getElementById(subj+'-vbar');
-  const vtxt=document.getElementById(subj+'-vtxt');
-  const vbtn=document.getElementById(subj+'-vbtn');
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  vRec=new SR();
-  vRec.continuous=false;vRec.interimResults=true;vRec.lang='en-US';
-  vbtn.classList.add('rec');
-  vbar.classList.add('show');
-  vtxt.textContent='Listening...';
-  let final='';
-  vRec.onresult=ev=>{
-    let interim='';final='';
-    for(let i=ev.resultIndex;i<ev.results.length;i++){
-      if(ev.results[i].isFinal) final+=ev.results[i][0].transcript;
-      else interim+=ev.results[i][0].transcript;
-    }
-    vtxt.textContent=final||interim||'Listening...';
-  };
-  vRec.onend=()=>{
-    vbtn.classList.remove('rec');vbar.classList.remove('show');
-    if(final.trim()){document.getElementById(inputId).value=final.trim();askAI(subj);}
-  };
-  vRec.onerror=(ev)=>{
-    vbtn.classList.remove('rec');vbar.classList.remove('show');
-    if(ev.error==='not-allowed') toast('Microphone access denied.','math');
-    else if(ev.error!=='no-speech') toast('Voice error: '+ev.error,'math');
-  };
-  vRec.start();
-}
-function stopVoice(){
-  if(vRec) vRec.stop();
-  if(vTarget){const s=vTarget.split('-')[0];const vbtn=document.getElementById(s+'-vbtn');if(vbtn)vbtn.classList.remove('rec');const vbar=document.getElementById(s+'-vbar');if(vbar)vbar.classList.remove('show');}
-}
-
-/* ══════ REACTION SOLVER (kept from original) ══════ */
-async function solveRxn(){
-  let raw=document.getElementById('rxnIn').value.trim();
-  if(!raw){showRxnErr('Please enter a chemical equation.');return;}
-  raw=normalizeEq(raw);
-  hideRxnErr();hideRxnRes();
-  setRxnLoad(true);
-  const prompt=`You are a chemistry expert. The user entered: "${raw}"
-Complete and balance the reaction. If ? marks unknown products, determine them.
-Return ONLY valid JSON (no markdown, no extra text):
-{
-  "balanced":"N2 + 3H2 -> 2NH3",
-  "reactants":[{"formula":"N2","coeff":1,"name":"Nitrogen gas"}],
-  "products":[{"formula":"NH3","coeff":2,"name":"Ammonia"}],
-  "reaction_type":"Synthesis reaction",
-  "reaction_name":"Haber-Bosch Process",
-  "steps":["Step 1...","Step 2..."],
-  "notes":"Conditions: 200atm, 400°C, iron catalyst"
-}
-If invalid input: {"error":"explanation"}`;
-  try{
-    const res=await fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'openai',messages:[{role:'system',content:'Expert chemistry AI. Respond with valid JSON only. No markdown, no ads, no promotional text.'},{role:'user',content:prompt}],temperature:0.1})});
-    if(!res.ok) throw new Error(`Error ${res.status}`);
-    const d=await res.json();
-    const txt=d.choices?.[0]?.message?.content||d.content||'';
-    let json;
-    try{const cl=txt.replace(/```json\s*/gi,'').replace(/```/g,'').trim();json=JSON.parse(cl);}
-    catch(e){const m=txt.match(/\{[\s\S]*\}/);if(m)json=JSON.parse(m[0]);else throw new Error('Could not parse response.');}
-    if(json.error) throw new Error(json.error);
-    renderRxn(json);toast(`${json.reaction_name||'Reaction'} solved!`,'chem');
-  }catch(e){showRxnErr(e.message||'Something went wrong.');}
-  finally{setRxnLoad(false);}
-}
-function normalizeEq(eq){
-  eq=eq.replace(/→/g,'=').replace(/-->/g,'=');
-  eq=eq.replace(/\b([a-z]{1,2})(\d*)/g,(m,sym,num)=>{
-    const cap=sym.charAt(0).toUpperCase()+sym.slice(1);
-    if(EL.find(e=>e.sym===cap)) return cap+num;
-    const up=sym.toUpperCase();
-    if(EL.find(e=>e.sym===up)) return up+num;
-    return m;
-  });
-  return eq;
-}
-function renderRxn(data){
-  const fmt=(cs,cls)=>cs.map(c=>`<span class="eq-coeff">${c.coeff>1?c.coeff:''}</span><span class="${cls}">${c.formula}</span>`).join(`<span class="eq-plus"> + </span>`);
-  document.getElementById('eqLine').innerHTML=fmt(data.reactants,'eq-react')+`<span class="eq-arrow"> → </span>`+fmt(data.products,'eq-prod');
-  const np=[data.reaction_name,data.reaction_type].filter(Boolean);
-  document.getElementById('rxnName').textContent=np.join(' · ');
-  const all=[...data.reactants.map(c=>({...c,role:'Reactant'})),...data.products.map(c=>({...c,role:'Product'}))];
-  document.getElementById('compounds').innerHTML=all.map((c,i)=>{
-    const mm=calcMM(c.formula);const ms=mm?mm.toFixed(3):'—';const pr=mm?(mm*c.coeff).toFixed(2)+' g/mol':'';
-    return `<div class="ccard" style="animation:ansIn .4s ease ${i*0.07}s both"><div class="ccard-role ${c.role==='Reactant'?'cr-r':'cr-p'}">${c.role}</div><div class="ccard-formula">${c.coeff>1?c.coeff:''}${c.formula}</div><div class="ccard-name">${c.name||''}</div><div class="ccard-mass">${ms}</div><div class="ccard-unit">g/mol</div><div class="ccard-mol">${pr}</div></div>`;
-  }).join('');
-  const maxC=Math.max(...all.map(c=>c.coeff));
-  document.getElementById('ratioSec').innerHTML=`<div class="ratio-lbl">Mole ratios</div>`+all.map((c,i)=>{
-    const pct=Math.round((c.coeff/maxC)*100);const col=c.role==='Reactant'?'var(--red)':'var(--phys)';
-    return `<div class="ratio-row" style="animation:fadeUp .4s ease ${i*0.08}s both"><div class="ratio-f">${c.formula}</div><div class="ratio-bar-wrap"><div class="ratio-bar" style="width:0%;background:${col}" data-w="${pct}"></div></div><div class="ratio-val">${c.coeff} mol</div></div>`;
-  }).join('');
-  setTimeout(()=>document.querySelectorAll('.ratio-bar[data-w]').forEach(b=>b.style.width=b.dataset.w+'%'),120);
-  const steps=[...(data.steps||[])];
-  if(data.notes) steps.push('📋 '+data.notes);
-  all.forEach(c=>{const mm=calcMM(c.formula);if(mm)steps.push(`Molar mass of ${c.formula}: ${mm.toFixed(3)} g/mol`);});
-  document.getElementById('stepsBody').innerHTML=steps.map((s,i)=>`<div class="step" style="animation-delay:${i*0.05}s"><div class="sn">${i+1}</div><div class="sc">${s}</div></div>`).join('');
-  const bt=document.getElementById('stepsTog'),bd=document.getElementById('stepsBody');
-  bt.classList.remove('open');bd.classList.remove('open');
-  document.getElementById('rxnResult').classList.add('show');
-}
-function calcMM(f){try{return parseMM(f.replace(/[-=]/g,'').replace(/\s/g,''));}catch(e){return null;}}
-function parseMM(f){
-  const stack=[{}];let i=0;
-  while(i<f.length){
-    if(f[i]==='('){stack.push({});i++;}
-    else if(f[i]===')'){i++;let ns='';while(i<f.length&&/\d/.test(f[i])){ns+=f[i];i++}const m2=ns?parseInt(ns):1;const top=stack.pop();for(const[e,c] of Object.entries(top))stack[stack.length-1][e]=(stack[stack.length-1][e]||0)+c*m2;}
-    else if(/[A-Z]/.test(f[i])){let el=f[i];i++;while(i<f.length&&/[a-z]/.test(f[i])){el+=f[i];i++}let ns='';while(i<f.length&&/\d/.test(f[i])){ns+=f[i];i++}const c=ns?parseInt(ns):1;stack[stack.length-1][el]=(stack[stack.length-1][el]||0)+c;}
-    else{i++;}
-  }
-  const comp=stack[0];let mass=0;
-  for(const[e,n] of Object.entries(comp)){if(!MM[e])throw new Error(`Unknown: ${e}`);mass+=MM[e]*n;}
-  return mass;
-}
-function setRxnLoad(on){
-  const b=document.getElementById('solveBtn'),t=document.getElementById('rxnThinking');
-  b.disabled=on;
-  b.innerHTML=on?`<svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> SOLVING...`:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> SOLVE WITH AI`;
-  if(t){t.style.display=on?'flex':'none';}
-}
-function showRxnErr(m){document.getElementById('rxn-emsg').textContent=m;document.getElementById('rxn-err').classList.add('show');}
-function hideRxnErr(){document.getElementById('rxn-err').classList.remove('show');}
-function hideRxnRes(){document.getElementById('rxnResult').classList.remove('show');}
-function loadRxn(ex){document.getElementById('rxnIn').value=ex;hideRxnErr();hideRxnRes();toast('Example loaded — press Solve!','chem');}
-function toggleSteps(){
-  const b=document.getElementById('stepsTog'),s=document.getElementById('stepsBody');
-  b.classList.toggle('open');s.classList.toggle('open');
-  b.querySelector('span').textContent=b.classList.contains('open')?'Hide Steps':'Show Step-by-Step Solution';
-}
-
-/* ══════ NAVIGATION ══════ */
-let currentPage='home';
-function goHome(){
-  showPage('home');
-  document.querySelectorAll('.nav-btn').forEach(b=>{b.className='nav-btn';});
-  document.getElementById('nav-chem').classList.add('act-chem');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id+'-page').classList.add('active');
-  currentPage=id;
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function gotoSubject(subj){
-  showPage(subj);
-  document.querySelectorAll('.nav-btn').forEach(b=>b.className='nav-btn');
-  document.getElementById('nav-'+subj).classList.add('act-'+subj);
-  const accs={chem:'#4f8ef7',phys:'#00e87a',math:'#ff6b9d'};
-  const accsL={chem:'#2563eb',phys:'#059669',math:'#db2777'};
-  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
-  document.documentElement.style.setProperty('--acc',isDark?accs[subj]:accsL[subj]);
-  if(subj==='chem') buildPT();
-}
-function switchSection(s){gotoSubject(s);}
-function switchChemTab(tab){
-  document.querySelectorAll('.chem-sub').forEach(el=>el.style.display='none');
-  document.getElementById('c-'+tab).style.display='block';
-  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('cs-'+tab).classList.add('active');
-  if(tab==='pt') buildPT();
-}
-
-/* ══════ THEME ══════ */
-let isLight=false;
-try{isLight=localStorage.getItem('slTheme')==='light';}catch(e){}
-function applyTheme(){
-  document.documentElement.setAttribute('data-theme',isLight?'light':'dark');
-  const icon=document.getElementById('themeIcon');
-  if(isLight){
-    icon.innerHTML=`<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
-  } else {
-    icon.innerHTML=`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-  }
-  try{localStorage.setItem('slTheme',isLight?'light':'dark');}catch(e){}
-}
-function toggleTheme(){isLight=!isLight;applyTheme();}
-
-/* ══════ CREDITS POPUP ══════ */
-function toggleCreds(){document.getElementById('credPopup').classList.toggle('open');}
-document.addEventListener('click',e=>{
-  if(!document.getElementById('credWrap').contains(e.target))
-    document.getElementById('credPopup').classList.remove('open');
-});
-
-/* ══════ TOAST ══════ */
-let toastT;
-function toast(msg,type='chem'){
-  const cols={chem:'#4f8ef7',phys:'#00e87a',math:'#ff6b9d'};
-  document.getElementById('tdot').style.background=cols[type]||'#4f8ef7';
-  document.getElementById('tmsg').textContent=msg;
-  const el=document.getElementById('toast');
-  el.classList.add('show');clearTimeout(toastT);
-  toastT=setTimeout(()=>el.classList.remove('show'),3200);
-}
-
-/* ══════ AUTO-RESIZE TEXTAREA ══════ */
-document.querySelectorAll('.q-input').forEach(ta=>{
-  ta.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,150)+'px';});
-  ta.addEventListener('keydown',function(e){
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();const s=this.id.split('-')[0];askAI(s);}
-  });
-});
-document.getElementById('rxnIn').addEventListener('keydown',e=>{if(e.key==='Enter')solveRxn();});
-
-/* ══════ KEYBOARD ══════ */
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();stopVoice();}});
-
-/* ══════ INTERSECTION OBSERVER ══════ */
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');}});
-},{threshold:0.1});
-document.querySelectorAll('.fade-section').forEach(el=>observer.observe(el));
-
-/* ══════ SPLASH ══════ */
-setTimeout(()=>{
-  document.getElementById('splash').classList.add('out');
-  setTimeout(()=>{document.getElementById('splash').style.display='none';},850);
-},2800);
-
-/* ══════ INIT ══════ */
-applyTheme();
-setTimeout(()=>toast('Welcome to ScienceLab!','chem'),3200);
-</script>
+<script src="script.js"></script>
 </body>
 </html>
+          
